@@ -385,6 +385,9 @@ def mart_exportar_todos_xml(
 ) -> dict[str, bool]:
     """
     Lista todos os modelos do Mart Server e exporta cada um para XML indentado.
+    
+    Replica a estrutura de pastas do Mart Server na saída:
+        Exemplo: Mart/Modelos/eMovies → output/xml/Mart/Modelos/eMovies.xml
 
     Utiliza o locator COM no formato:
         mart://Mart/<Catalog_Path_sem_prefixo>/<Catalog_Name>?<mart_conn_str>
@@ -463,8 +466,19 @@ def mart_exportar_todos_xml(
     for catalog_path, catalog_name in modelos:
         locator = montar_locator_mart(catalog_path, catalog_name, mart_conn_str)
         print(f"[INFO] Locator montado: {locator}")
-        caminho_saida = os.path.join(caminho_saida_dir, f"{catalog_name}.xml")
+        
+        # Replicar estrutura de pastas do Mart no output
+        # Ex: Mart/Modelos/eMovies.xml ou Mart/Ambiente/Homologacao/exemploMongo.xml
+        dir_saida_model = os.path.join(caminho_saida_dir, catalog_path)
+        os.makedirs(dir_saida_model, exist_ok=True)
+        
+        caminho_saida = os.path.join(dir_saida_model, f"{catalog_name}.xml")
         caminho_temp  = os.path.join(caminho_temp_dir,  f"{catalog_name}.erwin")
+        
+        print(f"[DEBUG] Catalog_Path: {catalog_path}")
+        print(f"[DEBUG] Catalog_Name: {catalog_name}")
+        print(f"[DEBUG] Dir saida: {dir_saida_model}")
+        print(f"[DEBUG] Caminho XML: {caminho_saida}")
         resultados[catalog_name] = _mart_exportar_modelo(locator, caminho_saida, caminho_temp)
 
     return resultados

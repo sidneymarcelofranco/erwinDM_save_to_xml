@@ -11,3 +11,8 @@ wheels/
 
 # Local secrets
 .env
+
+# Output and generated files (all XMLs, ERWINs and reports)
+output/
+input/
+logs/

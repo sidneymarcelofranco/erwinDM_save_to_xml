@@ -122,16 +122,20 @@ Monta o locator Mart usado na conexao SCAPI.
 ### `mart_exportar_todos_xml(mart_url, bearer_token, xsrf_token, mart_conn_str, caminho_saida_dir, caminho_temp_dir, data_atualizacao_min=None, data_atualizacao_max=None, data_atualizacao_exata=None) -> dict[str, bool]`
 Exporta para XML todos os modelos retornados (ou filtrados por data), usando `Catalog_Path` e `Catalog_Name` para montar o locator.
 
-## Organizacao de Pastas de Saida
+## Organização de Pastas de Saída
 
 Quando executado pelo `__main__`:
 
-- relatorio de modelos:
+- **Relatório de modelos**:
   `output/mart_report/mart_models.xml`
-- XMLs exportados dos modelos:
-  `output/xml/*.xml`
-- temporarios `.erwin`:
-  `temp/*.erwin` (removidos apos exportacao)
+
+- **XMLs exportados dos modelos** (com estrutura espelhada do Mart):
+  `output/xml/<Catalog_Path>/<Catalog_Name>.xml`
+  
+  Exemplo: `output/xml/Mart/Modelos/eMovies.xml`
+
+- **Temporários `.erwin`** (removidos após exportação):
+  `temp/*.erwin` (sempre vazio após conclusão)
 
 ## Exemplo de Uso
 
@@ -251,13 +255,27 @@ Resultado: Apenas modelos com `UpdatedOn` entre `03/06/2026` e `03/09/2026` (inc
 
 ### Arquivos de Saída
 
-Após execução, verifique:
+Após execução, a estrutura de pastas replica a organização do Mart Server:
 
-| Arquivo | Propósito |
+| Caminho | Propósito |
 | --- | --- |
 | `output/mart_report/mart_models.xml` | Lista completa de modelos do Mart (sem filtro) |
-| `output/xml/<model_name>.xml` | Cada modelo exportado, formato XML legível e indentado |
+| `output/xml/<Catalog_Path>/<Catalog_Name>.xml` | Cada modelo exportado com estrutura espelhada do Mart |
 | `temp/` | Vazio (arquivos `.erwin` são limpados após conversão) |
+
+**Exemplo prático:**
+
+Modelo com `Catalog_Path = "Mart/Modelos"` e `Catalog_Name = "eMovies"`:
+```
+output/xml/Mart/Modelos/eMovies.xml
+```
+
+Modelo com `Catalog_Path = "Mart/Ambiente/Homologacao"` e `Catalog_Name = "exemploMongo"`:
+```
+output/xml/Mart/Ambiente/Homologacao/exemploMongo.xml
+```
+
+Os diretórios são criados automaticamente se não existirem.
 
 ### Tratamento de Erros
 
@@ -273,15 +291,22 @@ Após executar com `MART_UPDATED_ON_EXACT=03/03/2026`:
 ```
 output/
 ├── mart_report/
-│   └── mart_models.xml           # Lista com ~9 modelos (conforme API)
+│   └── mart_models.xml                          # Lista com ~9 modelos (conforme API)
 └── xml/
-    ├── Model1.xml                # 3 modelos com UpdatedOn = 03/03/2026
-    ├── Model2.xml
-    └── Model3.xml
-temp/                             # Vazio (limpo após export)
+    └── Mart/
+        ├── Modelos/
+        │   ├── Contrato_Pessoa_Produto.xml      # 3 modelos com UpdatedOn = 03/03/2026
+        │   ├── eMovies.xml
+        │   └── ...
+        ├── Ambiente/
+        │   └── Homologacao/
+        │       └── exemploMongo.xml             # Se tivesse UpdatedOn = 03/03/2026
+        └── API2/
+            └── ...
+temp/                                            # Vazio (limpo após export)
 ```
 
-Abra qualquer XML em `output/xml/` para inspecionar a estrutura do modelo no formato legível.
+Cada XML está organizado exatamente como no Mart Server, facilitando a navegação e sincronização.
 
 ## Arquitetura COM Utilizada
 
@@ -299,13 +324,20 @@ erwinDM_save_to_xml/
 ├── test_mart_conn.py              # Teste de conectividade (opcional)
 ├── .env                           # Credenciais e filtros (NÃO versionar)
 ├── .env.example                   # Template de .env
+├── requirements.txt               # Dependências Python
 ├── input/
 │   └── eMovies.erwin              # Exemplo de modelo local
 ├── output/
 │   ├── mart_report/
-│   │   └── mart_models.xml        # Lista de modelos (salvo após listar)
+│   │   └── mart_models.xml        # Lista de modelos (API response)
 │   └── xml/
-│       └── *.xml                  # Modelos exportados
+│       └── Mart/                  # Estrutura espelhada do servidor
+│           ├── Modelos/
+│           │   ├── eMovies.xml
+│           │   └── ...
+│           └── Ambiente/
+│               └── Homologacao/
+│                   └── ...
 ├── temp/
 │   └── *.erwin                    # Temporários (limpados após export)
 ├── documentation/                 # Docs da API do erwin DM
