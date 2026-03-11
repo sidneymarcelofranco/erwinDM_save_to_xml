@@ -28,6 +28,20 @@ _SSL_CTX.verify_mode = ssl.CERT_NONE
 _MART_DATE_FMT = "%m/%d/%Y %I:%M:%S %p"
 
 
+def _normalizar_host_mart(mart_url: str) -> str:
+    """Normaliza MART_URL para host sem protocolo e sem barra final."""
+    host = mart_url.strip()
+    if "://" in host:
+        host = host.split("://", 1)[1]
+    return host.strip().strip("/")
+
+
+def _montar_base_url_api(mart_url: str, protocolo: str = "https") -> str:
+    host = _normalizar_host_mart(mart_url)
+    prot = (protocolo or "https").strip().lower()
+    return f"{prot}://{host}"
+
+
 def _parse_data_filtro(data_str: str, nome_campo: str) -> datetime:
     try:
         return datetime.strptime(data_str, "%m/%d/%Y")
@@ -59,6 +73,40 @@ def _env_obrigatorio(nome: str) -> str:
     return valor
 
 
+def _montar_conn_str_mart(
+    conn_str_base: str,
+    user_mart: str | None,
+    pass_mart: str | None,
+    mart_host: str,
+) -> str:
+    """
+    Monta a connection string final do Mart aplicando UID/PSW separadamente.
+
+    Regras:
+    - Remove UID/PSW/SRV existentes em conn_str_base.
+    - Usa o host informado em MART_URL para SRV.
+    - Se USER_MART e PASS_MART vierem preenchidos, aplica ambos no final.
+    - Se nao vierem, mantem apenas o base sem UID/PSW.
+    """
+    partes_limpa = []
+    for parte in conn_str_base.split(";"):
+        p = parte.strip()
+        if not p:
+            continue
+        chave = p.split("=", 1)[0].strip().upper()
+        if chave in {"UID", "PSW", "SRV"}:
+            continue
+        partes_limpa.append(p)
+
+    partes_limpa.append(f"SRV={_normalizar_host_mart(mart_host)}")
+
+    if user_mart and pass_mart:
+        partes_limpa.append(f"UID={user_mart}")
+        partes_limpa.append(f"PSW={pass_mart}")
+
+    return ";".join(partes_limpa)
+
+
 def montar_locator_mart(catalog_path: str, catalog_name: str, mart_conn_str: str) -> str:
     """
     Monta o locator SCAPI no formato:
@@ -80,7 +128,9 @@ def _fetch_modelos_mart(mart_url: str, bearer_token: str, xsrf_token: str) -> by
     Consulta GET /MartServer/api/report/generateReport/Models e retorna os
     bytes da resposta, ou None em caso de falha.
     """
-    endpoint = f"{mart_url.rstrip('/')}/MartServer/api/report/generateReport/Models"
+    protocolo = os.getenv("MART_PROTOCOL", "https")
+    base_url = _montar_base_url_api(mart_url, protocolo)
+    endpoint = f"{base_url}/MartServer/api/report/generateReport/Models"
     print(f"[INFO] Consultando Mart: {endpoint}")
     try:
         req = urllib.request.Request(endpoint)
@@ -435,7 +485,10 @@ if __name__ == "__main__":
     MART_URL     = _env_obrigatorio("MART_URL")
     BEARER       = _env_obrigatorio("MART_BEARER_TOKEN")
     XSRF         = _env_obrigatorio("MART_XSRF_TOKEN")
-    MART_CONN    = _env_obrigatorio("MART_CONN_STR")
+    MART_CONN_BASE = _env_obrigatorio("MART_CONN_STR")
+    USER_MART      = os.getenv("USER_MART", "").strip() or None
+    PASS_MART      = os.getenv("PASS_MART", "").strip() or None
+    MART_CONN      = _montar_conn_str_mart(MART_CONN_BASE, USER_MART, PASS_MART, MART_URL)
     DATA_EXATA   = os.getenv("MART_UPDATED_ON_EXACT", "").strip() or None
     DATA_MIN_ENV = os.getenv("MART_UPDATED_ON_MIN", "").strip()
     DATA_MIN     = DATA_MIN_ENV or None

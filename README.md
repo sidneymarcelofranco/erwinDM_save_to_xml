@@ -36,7 +36,9 @@ Variaveis usadas pelo script:
 - `MART_URL`
 - `MART_BEARER_TOKEN`
 - `MART_XSRF_TOKEN`
-- `MART_CONN_STR`
+- `MART_CONN_STR` (base sem `UID` e `PSW`)
+- `USER_MART` (opcional, mas recomendado)
+- `PASS_MART` (opcional, mas recomendado)
 - `MART_UPDATED_ON_EXACT` (opcional, formato `MM/DD/YYYY`)
 - `MART_UPDATED_ON_MIN` (opcional, formato `MM/DD/YYYY`)
 - `MART_UPDATED_ON_MAX` (opcional, formato `MM/DD/YYYY`)
@@ -46,6 +48,11 @@ Regras de filtro de data:
 - Minima: use `MART_UPDATED_ON_MIN`
 - Intervalo: use `MART_UPDATED_ON_MIN` + `MART_UPDATED_ON_MAX`
 - `EXACT` nao pode ser combinado com `MIN/MAX`
+
+Regras da conexao Mart:
+- `MART_CONN_STR` pode ser informado sem credenciais
+- se `USER_MART` e `PASS_MART` forem informados, o script injeta `UID` e `PSW` automaticamente
+- se `MART_CONN_STR` ja vier com `UID`/`PSW`, eles sao removidos e substituidos pelos valores de `USER_MART`/`PASS_MART` quando presentes
 
 O arquivo `.env` esta no `.gitignore` e nao deve ser versionado.
 
