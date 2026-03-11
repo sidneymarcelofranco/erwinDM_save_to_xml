@@ -1,4 +1,4 @@
-# erwinDM Save to XML
+# erwin Data Modeler Read Mart Portal and Save to XML
 
 Utilitario Python para:
 - listar modelos do Mart Server em XML (`mart_models.xml`)
