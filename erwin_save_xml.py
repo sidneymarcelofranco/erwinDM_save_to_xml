@@ -160,6 +160,10 @@ def _exportar_via_com(locator: str, caminho_saida_xml: str) -> bool:
     if not caminho_saida_xml.lower().endswith(".xml"):
         print("[AVISO] O caminho de saida nao possui extensao .xml.")
     try:
+        # Evita dialogo de confirmacao de sobrescrita no COM.
+        if os.path.exists(caminho_saida_xml):
+            os.unlink(caminho_saida_xml)
+
         print(f"[INFO] Exportando via {ERWIN_XML_PROGID}")
         print(f"[INFO] Entrada : {locator}")
         print(f"[INFO] Saida   : {caminho_saida_xml}")
