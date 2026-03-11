@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv run python -c \":*)",
+      "Bash(python -c \":*)",
+      "Read(//c/Users/sidne/.claude/projects/c--Users-sidne-Desktop-erwinDM-save-to-xml/memory/**)"
+    ],
+    "additionalDirectories": [
+      "C:\\temp"
+    ]
+  }
+}

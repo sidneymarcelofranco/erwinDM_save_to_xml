@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" class="_Skins_HTML5___Top_Navigation" data-mc-search-type="Stem" data-mc-help-system-file-name="erwinBookshelf.xml" data-mc-path-to-help-system="../../../" data-mc-has-content-body="True" data-mc-toc-path="References|API Reference|API Interfaces Reference|API Interfaces|ISCPersistenceUnit" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript">
+    </script>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="msapplication-config" content="../../../Skins/Favicons/browserconfig.xml" />
+        <meta name="componentcd" content="&lt;authorit:componentcd&gt;" />
+        <meta name="objectid" content="8011" />
+        <meta name="basedOnKey" content="260" />
+        <meta name="keywords" content="&lt;authorit:ca_keywords&gt;" />
+        <meta name="ca_content_type" content="&lt;authorit:ca_content_type&gt;" />
+        <meta name="ca_context" content="&lt;authorit:ca_context&gt;" />
+        <meta name="ca_role" content="&lt;authorit:ca_role&gt;" />
+        <meta name="ca_language" content="en-US" />
+        <meta name="ca_offering_name" content="&lt;authorit:ca_offering_name&gt;" />
+        <meta name="ca_product_version" content="&lt;authorit:ca_product_version&gt;" />
+        <meta name="ca_product_family" content="&lt;authorit:ca_product_family&gt;" />
+        <meta name="ca_alias_name" content="&lt;authorit:ca_alias_name&gt;" />
+        <meta name="ca_related_offering" content="&lt;authorit:ca_related_offering&gt;" />
+        <meta name="ca_access_level" content="&lt;authorit:ca_access_level&gt;" />
+        <meta name="ca_date_time" content="8/29/2018T10:23-5:00" />
+        <meta name="ca_creator" content="(supervisor)" />
+        <meta name="ca_source" content="&lt;authorit:ca_source&gt;" />
+        <meta name="ca_format" content="HTML" />
+        <meta name="ca_database" content="&lt;authorit:ca_database&gt;" />
+        <meta name="ca_application_server" content="&lt;authorit:ca_application_server&gt;" />
+        <meta name="ca_operating_system" content="&lt;authorit:ca_operating_system&gt;" />
+        <meta name="ca_star_code" content="&lt;authorit:ca_star_code&gt;" />
+        <meta name="ca_cms_id" content="&lt;authorit:ca_cms_id&gt;" />
+        <link rel="shortcut icon" href="../../../Skins/Favicons/favicon-32x32.png" />
+        <link rel="icon" sizes="32x32" href="../../../Skins/Favicons/favicon-32x32.png" />
+        <link rel="icon" sizes="16x16" href="../../../Skins/Favicons/favicon-16x16.png" />
+        <meta charset="utf-8" /><title>ISCPersistenceUnit::ReverseEngineer</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Print.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Fluid/Stylesheets/foundation.6.2.3.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Fluid/Stylesheets/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Fluid/Stylesheets/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Fluid/Stylesheets/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Fluid/Stylesheets/Print.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+        <link href="../../Resources/TableStyles/FeedbackTable.css" rel="stylesheet" data-mc-stylesheet-type="table" />
+        <style>/*&lt;meta /&gt;*/
+
+.button.previous-topic-button
+{
+	-pie-background: linear-gradient(#ffffff, #ececec);
+}
+
+.button.next-topic-button
+{
+	-pie-background: linear-gradient(#ffffff, #ececec);
+}
+
+.button.print-button
+{
+	-pie-background: linear-gradient(#ffffff, #ececec);
+}
+
+.needs-pie
+{
+	behavior: url('../../../Resources/Scripts/PIE-no-motw.htc');
+}
+
+</style>
+        <link href="../../Resources/TableStyles/Gray-erwinTableStyle.css" rel="stylesheet" data-mc-stylesheet-type="table" />
+        <link href="../../Resources/Stylesheets/stylesheet.css" rel="stylesheet" type="text/css" />
+        <link href="../../Resources/Stylesheets/docsstylesheet.css" rel="stylesheet" type="text/css" />
+        <link rel="shortcut icon" href="../../../Skins/Favicons/favicon-32x32.png" />
+        <link rel="icon" sizes="32x32" href="../../../Skins/Favicons/favicon-32x32.png" />
+        <link rel="icon" sizes="16x16" href="../../../Skins/Favicons/favicon-16x16.png" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/purify.min.js" type="text/javascript" defer="defer">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" type="text/javascript" defer="defer">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" type="text/javascript" defer="defer">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.6.2.3_custom.js" type="text/javascript" defer="defer">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" type="text/javascript" defer="defer">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" type="text/javascript" defer="defer">
+        </script>
+        <script type="text/javascript" src="../../../Skins/Default/Scripts/TopicToolBar.js">
+        </script>
+    </head>
+    <body>
+        <div class="foundation-wrap off-canvas-wrapper">
+            <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper="">
+                <aside class="off-canvas position-left" role="complementary" id="offCanvas" data-off-canvas="" data-position="left" data-mc-ignore="true">
+                    <ul class="off-canvas-drilldown vertical menu off-canvas-list" data-drilldown="" data-mc-back-link="Back" data-mc-css-tree-node-expanded="is-drilldown-submenu-parent" data-mc-css-tree-node-collapsed="is-drilldown-submenu-parent" data-mc-css-sub-menu="vertical menu slide-in-left is-drilldown-submenu" data-mc-include-indicator="False" data-mc-include-icon="False" data-mc-include-parent-link="True" data-mc-include-back="True" data-mc-defer-expand-event="True" data-mc-expanded-event="open.zf.drilldown closed.zf.drilldown" data-mc-expand-event="click.zf.drilldown" data-mc-toc="True">
+                    </ul>
+                </aside>
+                <div class="off-canvas-content inner-wrap" data-off-canvas-content="">
+                    <div data-sticky-container="" class="title-bar-container">
+                        <nav class="title-bar tab-bar sticky" aria-label="Main navigation and search" data-sticky="" data-options="marginTop:0" style="width:100%" data-sticky-on="only screen and (max-width: 1279px)" data-mc-ignore="true"><a class="skip-to-content fluid-skip showOnFocus" href="#">Skip To Main Content</a>
+                            <div class="middle title-bar-section outer-row clearfix">
+                                <div class="menu-icon-container relative clearfix">
+                                    <div class="central-account-wrapper">
+                                        <div class="central-dropdown"><a class="central-account-drop"><span class="central-account-image"></span><span class="central-account-text">Account</span></a>
+                                            <div class="central-dropdown-content"><a class="MCCentralLink central-dropdown-content-settings">Settings</a>
+                                                <hr class="central-separator" /><a class="MCCentralLink central-dropdown-content-logout">Logout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="menu-icon" aria-label="Show Navigation Panel" data-toggle="offCanvas"><span></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="title-bar-layout outer-row">
+                                <div class="logo-wrapper"><a class="logo" href="../../Home.htm" alt="Logo"></a>
+                                </div>
+                                <div class="navigation-wrapper nocontent">
+                                    <ul class="navigation clearfix" data-mc-css-tree-node-has-children="has-children" data-mc-css-sub-menu="sub-menu" data-mc-expand-event="mouseenter" data-mc-top-nav-menu="True" data-mc-max-depth="2" data-mc-include-icon="False" data-mc-include-indicator="False" data-mc-include-children="True" data-mc-include-siblings="True" data-mc-include-parent="True" data-mc-toc="True">
+                                        <li class="placeholder" style="visibility:hidden"><a>placeholder</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="central-account-wrapper">
+                                    <div class="central-dropdown"><a class="central-account-drop"><span class="central-account-image"></span><span class="central-account-text">Account</span></a>
+                                        <div class="central-dropdown-content"><a class="MCCentralLink central-dropdown-content-settings">Settings</a>
+                                            <hr class="central-separator" /><a class="MCCentralLink central-dropdown-content-logout">Logout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="nav-search-wrapper">
+                                    <div class="nav-search row">
+                                        <form class="search" action="#">
+                                            <div class="search-bar search-bar-container needs-pie">
+                                                <input class="search-field needs-pie" type="search" aria-label="Search Field" placeholder="Search" />
+                                                <div class="search-filter-wrapper"><span class="invisible-label" id="search-filters-label">Filter: </span>
+                                                    <div class="search-filter" aria-haspopup="true" aria-controls="sf-content" aria-expanded="false" aria-label="Search Filter" title="All Files" role="button" tabindex="0">
+                                                    </div>
+                                                    <div class="search-filter-content" id="sf-content">
+                                                        <ul>
+                                                            <li>
+                                                                <button class="mc-dropdown-item" aria-labelledby="search-filters-label filterSelectorLabel-00001"><span id="filterSelectorLabel-00001">All Files</span>
+                                                                </button>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="search-submit-wrapper" dir="ltr">
+                                                    <div class="search-submit" title="Search" role="button" tabindex="0"><span class="invisible-label">Submit Search</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="main-section">
+                        <div class="row outer-row sidenav-layout">
+                            <nav class="sidenav-wrapper">
+                                <div class="sidenav-container">
+                                    <ul class="off-canvas-accordion vertical menu sidenav" data-accordion-menu="" data-mc-css-tree-node-expanded="is-accordion-submenu-parent" data-mc-css-tree-node-collapsed="is-accordion-submenu-parent" data-mc-css-sub-menu="vertical menu accordion-menu is-accordion-submenu nested" data-mc-include-indicator="False" data-mc-include-icon="False" data-mc-include-parent-link="False" data-mc-include-back="False" data-mc-defer-expand-event="True" data-mc-expanded-event="down.zf.accordionMenu up.zf.accordionMenu" data-mc-expand-event="click.zf.accordionMenu" data-mc-toc="True" data-mc-side-nav-menu="True">
+                                    </ul>
+                                </div>
+                            </nav>
+                            <div class="body-container">
+                                <div data-mc-content-body="True">
+                                    <div>
+                                        <div id="contentBody">
+                                            <div>
+                                                <div class="sideContent">
+                                                    <div>
+                                                        <div class="buttons popup-container clearfix topicToolbarProxy _Skins_TopicToolBar mc-component nocontent" style="mc-topic-toolbar-items: AddTopicToFavorites PreviousTopic NextTopic Print;">
+                                                            <div class="button-group-container-left">
+                                                                <button class="button needs-pie previous-topic-button" title="Navigate previous" disabled="true">
+                                                                    <div>
+                                                                        <div role="img" class="button-icon-wrapper" aria-label="Navigate previous">
+                                                                            <div class="button-icon"> </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </button>
+                                                                <button class="button needs-pie next-topic-button" title="Navigate next" disabled="true">
+                                                                    <div>
+                                                                        <div role="img" class="button-icon-wrapper" aria-label="Navigate next">
+                                                                            <div class="button-icon"> </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </button>
+                                                                <button class="button needs-pie print-button" title="Print">
+                                                                    <div>
+                                                                        <div role="img" class="button-icon-wrapper" aria-label="Print">
+                                                                            <div class="button-icon"> </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="nocontent">
+                                                    <div class="MCBreadcrumbsBox_0 breadcrumbs" role="navigation" aria-label="Breadcrumbs" data-mc-breadcrumbs-divider="  |  " data-mc-breadcrumbs-count="4" data-mc-toc="True"><span class="MCBreadcrumbsPrefix"> </span>
+                                                    </div>
+                                                </div>
+                                                <div role="main" id="mc-main-content">
+                                                    <p class="bodytext"><a name="aanchor2138"></a>
+                                                        <MadCap:concept term="References" />
+                                                    </p>
+                                                    <h4 class="heading4" id="t8011">ISCPersistenceUnit::ReverseEngineer</h4>
+                                                    <p class="bodytext">Here is the signature for the <i>ReverseEngineer</i> function:</p><pre xml:space="preserve">
+HRESULT ReverseEngineer ([in]ISCPropertyBag * PropertyBag,[in]VARIANT 
+REoptionpath,[in] VARIANT REConnectionString,[in] VARIANT REPassword);
+</pre>
+                                                    <p class="bodytext">The following table contains the valid arguments for the <i>ReverseEngineer</i> function:</p>
+                                                    <p class="beforetablefull">
+                                                    </p>
+                                                    <table border="0" cellpadding="2" cellspacing="0" class="TableStyle-Gray-erwinTableStyle" style="width: 480;mc-table-style: url('../../Resources/TableStyles/Gray-erwinTableStyle.css');">
+                                                        <col class="TableStyle-Gray-erwinTableStyle-Column-Column1" />
+                                                        <col class="TableStyle-Gray-erwinTableStyle-Column-Column1" />
+                                                        <col class="TableStyle-Gray-erwinTableStyle-Column-Column1" />
+                                                        <thead>
+                                                            <tr class="TableStyle-Gray-erwinTableStyle-Head-erwinHeader">
+                                                                <th class="TableStyle-Gray-erwinTableStyle-HeadE-Column1-erwinHeader">
+                                                                    <p>Parameter</p>
+                                                                </th>
+                                                                <th class="TableStyle-Gray-erwinTableStyle-HeadE-Column1-erwinHeader">
+                                                                    <p>Valid Type/Value</p>
+                                                                </th>
+                                                                <th class="TableStyle-Gray-erwinTableStyle-HeadD-Column1-erwinHeader">
+                                                                    <p>Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="160" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">PropertyBag</p>
+                                                                </td>
+                                                                <td width="160" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">ISCPropertyBag * - Pointer to a Property Bag object.</p>
+                                                                </td>
+                                                                <td width="160" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Contains options for reverse engineering.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="160" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">REoptionpath</p>
+                                                                </td>
+                                                                <td width="160" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">VT_BSTR - Path.</p>
+                                                                </td>
+                                                                <td width="160" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Specifies the full path to the items storage for reverse engineering.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="160" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">REConnectionString</p>
+                                                                </td>
+                                                                <td width="160" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">VT_BSTR - Database connection string.</p>
+                                                                </td>
+                                                                <td width="160" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Identifies the database connect string.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="160" class="TableStyle-Gray-erwinTableStyle-BodyB-Column1-Body1">
+                                                                    <p class="tablebodytext">REPassword</p>
+                                                                </td>
+                                                                <td width="160" class="TableStyle-Gray-erwinTableStyle-BodyB-Column1-Body1">
+                                                                    <p class="tablebodytext">VT_BSTR - Connection password.</p>
+                                                                    <p class="tablebodytext">Null for windows authentication.</p>
+                                                                </td>
+                                                                <td width="160" class="TableStyle-Gray-erwinTableStyle-BodyA-Column1-Body1">
+                                                                    <p class="tablebodytext">Identifies the password used for database connection.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p class="bodytext">The following table contains the valid arguments for the PropertyBag parameter.</p>
+                                                    <p class="beforetablefull">
+                                                    </p>
+                                                    <table border="0" cellpadding="2" cellspacing="0" class="TableStyle-Gray-erwinTableStyle" style="width: 480;mc-table-style: url('../../Resources/TableStyles/Gray-erwinTableStyle.css');">
+                                                        <col class="TableStyle-Gray-erwinTableStyle-Column-Column1" />
+                                                        <col class="TableStyle-Gray-erwinTableStyle-Column-Column1" />
+                                                        <col class="TableStyle-Gray-erwinTableStyle-Column-Column1" />
+                                                        <thead>
+                                                            <tr class="TableStyle-Gray-erwinTableStyle-Head-erwinHeader">
+                                                                <th class="TableStyle-Gray-erwinTableStyle-HeadE-Column1-erwinHeader">
+                                                                    <p>Parameter</p>
+                                                                </th>
+                                                                <th class="TableStyle-Gray-erwinTableStyle-HeadE-Column1-erwinHeader">
+                                                                    <p>Valid Type/Value</p>
+                                                                </th>
+                                                                <th class="TableStyle-Gray-erwinTableStyle-HeadD-Column1-erwinHeader">
+                                                                    <p>Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="168" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">System_objects</p>
+                                                                </td>
+                                                                <td width="150" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">VT_BOOL -- True or False.</p>
+                                                                    <p class="tablebodytext">Default: False</p>
+                                                                </td>
+                                                                <td width="162" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Retrieves system objects.</p>
+                                                                    <p class="tablebodytext">True: System objects are retrieved.</p>
+                                                                    <p class="tablebodytext">False: System objects are not retrieved.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="168" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">Oracle_Use_DBA_Views</p>
+                                                                </td>
+                                                                <td width="150" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">VT_BOOL -- True or False</p>
+                                                                    <p class="tablebodytext">Default: False. Only valid for Oracle.</p>
+                                                                </td>
+                                                                <td width="162" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Use DBA Views for reverse engineering.</p>
+                                                                    <p class="tablebodytext">True: Use DBA Views.</p>
+                                                                    <p class="tablebodytext">False: Do not use DBA Views.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="168" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">Synch_Table_Filter_By_Name</p>
+                                                                </td>
+                                                                <td width="150" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">VT_BSTR</p>
+                                                                    <p class="tablebodytext">Default: Null</p>
+                                                                </td>
+                                                                <td width="162" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Reverse engineers the tables that contain the input filter strings.Multiple filter strings are specified as comma separated values.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="168" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">Synch_Owned_Only</p>
+                                                                </td>
+                                                                <td width="150" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">VT_BOOL -- True or False.</p>
+                                                                    <p class="tablebodytext">Default: False</p>
+                                                                </td>
+                                                                <td width="162" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Retrieves tables and views of users.</p>
+                                                                    <p class="tablebodytext">True: Retrieve from current user or owners.</p>
+                                                                    <p class="tablebodytext">False: Retrieve from all.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="168" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">Synch_Owned_Only_Name</p>
+                                                                </td>
+                                                                <td width="150" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">VT_BSTR </p>
+                                                                    <p class="tablebodytext">Default: Null</p>
+                                                                </td>
+                                                                <td width="162" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Reverse engineers tables and views owned by the specified users.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="168" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">Case_Option</p>
+                                                                </td>
+                                                                <td width="150" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">25090:None</p>
+                                                                    <p class="tablebodytext">25091:lower</p>
+                                                                    <p class="tablebodytext">25092:Upper</p>
+                                                                    <p class="tablebodytext">Default: None</p>
+                                                                </td>
+                                                                <td width="162" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Specifies the case conversion option for physical names.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="168" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">Logical_Case_Option</p>
+                                                                </td>
+                                                                <td width="150" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">25045: None</p>
+                                                                    <p class="tablebodytext">25046: UPPER</p>
+                                                                    <p class="tablebodytext">25047: lower</p>
+                                                                    <p class="tablebodytext">25048:Mixed</p>
+                                                                    <p class="tablebodytext">Default: None</p>
+                                                                </td>
+                                                                <td width="162" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Specifies the case conversion option for logical names.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="168" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">Infer_Primary_Keys</p>
+                                                                </td>
+                                                                <td width="150" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">VT_BOOL-- True or False.</p>
+                                                                    <p class="tablebodytext">Default: None</p>
+                                                                </td>
+                                                                <td width="162" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Infers primary key columns for the tables that are based on defined indexes.</p>
+                                                                    <p class="tablebodytext">True: Primary Keys option is selected.</p>
+                                                                    <p class="tablebodytext">False: Primary Keys option is not selected.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="168" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">Infer_Relations</p>
+                                                                </td>
+                                                                <td width="150" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">VT_BOOL-- True or False.</p>
+                                                                    <p class="tablebodytext">Default: False</p>
+                                                                </td>
+                                                                <td width="162" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Infers the relationships between tables that are based on either primary key column names or defined indexes.</p>
+                                                                    <p class="tablebodytext">True: Relations Option is selected.</p>
+                                                                    <p class="tablebodytext">False: Relations Option is not selected.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="168" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">Infer_Relations_Indexes</p>
+                                                                </td>
+                                                                <td width="150" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">VT_BOOL-- True or False.</p>
+                                                                    <p class="noteAltTable">Set the value to Indexes or Names when Infer_Relations is set to Relations.</p>
+                                                                    <p class="tablebodytext">Default: False.</p>
+                                                                </td>
+                                                                <td width="162" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Infers the relationships from the table indexes.</p>
+                                                                    <p class="tablebodytext">True: Indexes option is selected.</p>
+                                                                    <p class="tablebodytext">False: Names option is selected.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="168" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">Remove_ERwin_Generated_Triggers</p>
+                                                                </td>
+                                                                <td width="150" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">VT_BOOL--True or False.</p>
+                                                                    <p class="tablebodytext">Default: True.</p>
+                                                                </td>
+                                                                <td width="162" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Removes erwin generated triggers.</p>
+                                                                    <p class="tablebodytext">True: Remove Include Generated Triggers.</p>
+                                                                    <p class="tablebodytext">False: Do not remove Include Generated Triggers.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="168" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">Force_Physical_Name_Option</p>
+                                                                </td>
+                                                                <td width="150" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">VT_BOOL--True or False.</p>
+                                                                    <p class="tablebodytext">Default: Force</p>
+                                                                </td>
+                                                                <td width="162" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Overrides the physical name property for all objects in logical/physical models automatically during reverse engineering.</p>
+                                                                    <p class="tablebodytext">True: Force physical name option.</p>
+                                                                    <p class="tablebodytext">False: Do not force physical name option.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="168" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p>Synch_Database_Only_Name</p>
+                                                                </td>
+                                                                <td width="150" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p>VT_BSTR</p>
+                                                                </td>
+                                                                <td width="162" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p>Reverse engineers the databases that contain the input filter strings. Multiple filter strings are specified as comma separated values.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="168" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p>Synch_Scope_Filter_By_Name</p>
+                                                                </td>
+                                                                <td width="150" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p>VT_BSTR</p>
+                                                                </td>
+                                                                <td width="162" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p>Reverse engineers the Scope object that contain the input filter strings. Multiple filter strings are specified as comma separated values.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="168" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p>Synch_Collection_Filter_By_Name</p>
+                                                                </td>
+                                                                <td width="150" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p>VT_BSTR</p>
+                                                                </td>
+                                                                <td width="162" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p>Reverse engineers the Collection object that contain the input filter strings. Multiple filter strings are specified as comma separated values.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="168" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p>Synch_View_Filter_By_Name</p>
+                                                                </td>
+                                                                <td width="150" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p>VT_BSTR</p>
+                                                                </td>
+                                                                <td width="162" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p>Reverse engineers the View object that contain the input filter strings. Multiple filter strings are specified as comma separated values.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="168" class="TableStyle-Gray-erwinTableStyle-BodyB-Column1-Body1">
+                                                                    <p>Synch_Label_Filter_By_Name</p>
+                                                                </td>
+                                                                <td width="150" class="TableStyle-Gray-erwinTableStyle-BodyB-Column1-Body1">
+                                                                    <p>VT_BSTR</p>
+                                                                </td>
+                                                                <td width="162" class="TableStyle-Gray-erwinTableStyle-BodyA-Column1-Body1">
+                                                                    <p>Reverse engineers the Label object that contain the input filter strings. Multiple filter strings are specified as comma separated values.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p class="bodytext">
+                                                    </p>
+                                                    <p class="examplesubheading">Connection String</p><pre xml:space="preserve">
+Server=&lt;Target Server type&gt;:&lt;MajorVersion&gt;:&lt;MinorVersion&gt;
+|AUTHENTICATION=&lt;AuthenticationType&gt;|USER=&lt;UserName&gt;|
+&lt;ServerParameter&gt;=&lt;ServerParameterValue&gt;
+
+</pre>
+                                                    <p class="bodytext"><strong>Example:</strong>
+                                                    </p><pre xml:space="preserve">
+SERVER=16:10:0|AUTHENTICATION=4|USER=erwin|1=3|2=r8|3=127.0.0.1\\erwin_mart01
+</pre>
+                                                    <p class="bodytext">The following table describes the valid values for a connection string.</p>
+                                                    <p class="beforetable">
+                                                    </p>
+                                                    <table border="0" cellpadding="2" cellspacing="0" class="TableStyle-Gray-erwinTableStyle" style="width: 720;mc-table-style: url('../../Resources/TableStyles/Gray-erwinTableStyle.css');">
+                                                        <col class="TableStyle-Gray-erwinTableStyle-Column-Column1" />
+                                                        <col class="TableStyle-Gray-erwinTableStyle-Column-Column1" />
+                                                        <col class="TableStyle-Gray-erwinTableStyle-Column-Column1" />
+                                                        <thead>
+                                                            <tr class="TableStyle-Gray-erwinTableStyle-Head-erwinHeader">
+                                                                <th class="TableStyle-Gray-erwinTableStyle-HeadE-Column1-erwinHeader">
+                                                                    <p>Parameter</p>
+                                                                </th>
+                                                                <th class="TableStyle-Gray-erwinTableStyle-HeadE-Column1-erwinHeader">
+                                                                    <p>Value</p>
+                                                                </th>
+                                                                <th class="TableStyle-Gray-erwinTableStyle-HeadD-Column1-erwinHeader">
+                                                                    <p>Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="240" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">SERVER</p>
+                                                                </td>
+                                                                <td width="240" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">&lt;TargetServerType&gt; is an integer value.</p>
+                                                                    <p class="tablebodytext">1: Access</p>
+                                                                    <p class="tablebodytext">2: Db2</p>
+                                                                    <p class="tablebodytext">3: DB2UDB</p>
+                                                                    <p class="tablebodytext">4: Foxpro</p>
+                                                                    <p class="tablebodytext">5: Inforrmix</p>
+                                                                    <p class="tablebodytext">6: Ingres</p>
+                                                                    <p class="tablebodytext">7: ISeries</p>
+                                                                    <p class="tablebodytext">8: MySQL</p>
+                                                                    <p class="tablebodytext">9: AlloyDB</p>
+                                                                    <p class="tablebodytext">9: ODBC</p>
+                                                                    <p class="tablebodytext">9: Netezza</p>
+                                                                    <p class="tablebodytext">9. Redshift</p>
+                                                                    <p class="tablebodytext">10: Oracle</p>
+                                                                    <p class="tablebodytext">11: Progress</p>
+                                                                    <p class="tablebodytext">12: Redbrick</p>
+                                                                    <p class="tablebodytext">13: SAS</p>
+                                                                    <p class="tablebodytext">14: SAP ASE</p>
+                                                                    <p class="tablebodytext">15: SAP IQ</p>
+                                                                    <p class="tablebodytext">16: SQLServer</p>
+                                                                    <p class="tablebodytext">17: Teradata</p>
+                                                                    <p class="tablebodytext">18: SQLAzure</p>
+                                                                    <p class="tablebodytext">19. Hive</p>
+                                                                    <p class="tablebodytext">20. MariaDB</p>
+                                                                    <p class="tablebodytext">21. Snowflake</p>
+                                                                    <p class="tablebodytext">22. Cassandra</p>
+                                                                    <p class="tablebodytext">23. MongoDB</p>
+                                                                    <p class="tablebodytext">24. Couchbase</p>
+                                                                    <p class="tablebodytext">25. AVRO</p>
+                                                                    <p class="tablebodytext">26. JSON</p>
+                                                                    <p class="tablebodytext">27. Azure Synapse</p>
+                                                                    <p class="tablebodytext">28. Neo4j</p>
+                                                                    <p class="tablebodytext">29. ArangoDB</p>
+                                                                    <p class="tablebodytext">30. Parquet</p>
+                                                                    <p class="tablebodytext">31. Amazon Keyspaces</p>
+                                                                    <p class="tablebodytext">32. Google BigQuery</p>
+                                                                    <p class="tablebodytext">33. DynamoDB</p>
+                                                                    <p class="tablebodytext">34. Databricks</p>
+                                                                    <p class="tablebodytext">35. PostgreSQL</p>
+                                                                    <p class="tablebodytext">37. OpenAPI</p>
+                                                                </td>
+                                                                <td width="240" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Specifies the type of the database server.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="240" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">AUTHENTICATION</p>
+                                                                </td>
+                                                                <td width="240" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">4 or 8</p>
+                                                                    <p class="tablebodytext">4: Database authentication</p>
+                                                                    <p class="tablebodytext">8: Windows authentication</p>
+                                                                </td>
+                                                                <td width="240" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Specifies the authentication type.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="240" class="TableStyle-Gray-erwinTableStyle-BodyB-Column1-Body1">
+                                                                    <p class="tablebodytext">User</p>
+                                                                </td>
+                                                                <td width="240" class="TableStyle-Gray-erwinTableStyle-BodyB-Column1-Body1">
+                                                                    <p class="tablebodytext">User Name</p>
+                                                                </td>
+                                                                <td width="240" class="TableStyle-Gray-erwinTableStyle-BodyA-Column1-Body1">
+                                                                    <p class="tablebodytext">Specifies the user name.</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p class="bodytext">
+                                                    </p>
+                                                    <p class="bodytext">The following table describes the type and value of ServerParameter:</p>
+                                                    <p class="beforetable">
+                                                    </p>
+                                                    <table border="0" cellpadding="2" cellspacing="0" class="TableStyle-Gray-erwinTableStyle" style="mc-table-style: url('../../Resources/TableStyles/Gray-erwinTableStyle.css');">
+                                                        <col class="TableStyle-Gray-erwinTableStyle-Column-Column1" />
+                                                        <col class="TableStyle-Gray-erwinTableStyle-Column-Column1" />
+                                                        <col class="TableStyle-Gray-erwinTableStyle-Column-Column1" />
+                                                        <thead>
+                                                            <tr class="TableStyle-Gray-erwinTableStyle-Head-erwinHeader">
+                                                                <th class="TableStyle-Gray-erwinTableStyle-HeadE-Column1-erwinHeader">
+                                                                    <p>Server Parameter</p>
+                                                                </th>
+                                                                <th class="TableStyle-Gray-erwinTableStyle-HeadE-Column1-erwinHeader">
+                                                                    <p>Server Parameter Value</p>
+                                                                </th>
+                                                                <th class="TableStyle-Gray-erwinTableStyle-HeadD-Column1-erwinHeader">
+                                                                    <p>Description</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="132" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">1</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">2 or 3</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">2: Indicates "Use ODBC data source".</p>
+                                                                    <p class="tablebodytext">3: Indicates "Use Native Connection"</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="132" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">2</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">String</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Identifies the database.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="132" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">3</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">String</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Identifies the server name.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="132" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">4</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">String</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Identifies the alternate catalog name.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="132" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">5</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">String</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Identifies the ODBC data source name.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="132" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">6</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">String</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Identifies the connection string value or DNS_URL for the database.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="132" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">7</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">String</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Identifies the access database path.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="132" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">8</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">String</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Identifies the system database path.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="132" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">9</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">String</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">Identifies the password for access system database.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="132" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">10</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">Boolean 0 or 1</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">0: ODBC data browse is turned off.</p>
+                                                                    <p class="tablebodytext">1: ODBC data browse is turned on.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="132" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">11</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">Boolean 0 or 1</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">0: Do not use encrypted connection.</p>
+                                                                    <p class="tablebodytext">1: Use encrypted connection.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="132" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">12</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">Boolean 0 or 1</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">0: Do not connect to Oracle as SYSDBA.</p>
+                                                                    <p class="tablebodytext">1: Connect to Oracle as SYSDBA.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="132" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">13 </p>
+                                                                    <p class="noteAltTable">Applicable only to Hive
+                    </p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">1 or 2 or 3</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">1: REDB using Hive</p>
+                                                                    <p class="tablebodytext">2: REDB using MySQL Metastore</p>
+                                                                    <p class="tablebodytext">3: REDB using PostgreSQL Metastore</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="132" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">14</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p class="tablebodytext">3 or 4 or 5</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p class="tablebodytext">3: Direct connection method</p>
+                                                                    <p class="tablebodytext">4: Connection String method</p>
+                                                                    <p>5: Direct Cloud connection method</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="132" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p width="132">16</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p width="156">String</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p>Identifies the Machine name/IP.</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="132" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p width="132">17</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p width="156">Integer</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p>Identifies the Port number</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="132" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p width="132">26</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p width="156">String</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p width="156">Identifies the SSL certificate path for Cassandra database</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="132" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p width="132">32</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p width="156">String</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p>Identifies the Access Key Id - DynamoDB</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="132" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p width="132">33</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyE-Column1-Body1">
+                                                                    <p width="156">String</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyD-Column1-Body1">
+                                                                    <p>Identifies the Secret Access key - DynamoDB</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr align="left" valign="top" class="TableStyle-Gray-erwinTableStyle-Body-Body1">
+                                                                <td width="132" class="TableStyle-Gray-erwinTableStyle-BodyB-Column1-Body1">
+                                                                    <p width="132">34</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyB-Column1-Body1">
+                                                                    <p width="156">String</p>
+                                                                </td>
+                                                                <td width="156" class="TableStyle-Gray-erwinTableStyle-BodyA-Column1-Body1">
+                                                                    <p>Identifies the Region name - DynamoDB</p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p class="bodytext">For the target database, Hive, an additional server parameter, 13, is required as shown in the following example:
+        </p>
+                                                    <dl>
+                                                        <dt><strong>For REDB-PureHive</strong>:</dt>
+                                                        <dd>
+                                                            <p class="normaltermcontinued2">Call oPersistenceUnit.ReverseEngineer(oPropertyBag,, "SERVER=19:2:1|AUTHENTICATION=4|USER=&lt;hive-user&gt;|1=2|5=&lt;cloudera dsn&gt;|10=0|<strong>13=1</strong>", "&lt;hive-password&gt;")</p>
+                                                        </dd>
+                                                        <dt><strong>For REDB-Metastore MySQL</strong>:</dt>
+                                                        <dd>
+                                                            <p class="normaltermcontinued2">Call oPersistenceUnit.ReverseEngineer(oPropertyBag,, "SERVER=19:2:1|AUTHENTICATION=4|USER=&lt;mysql-user&gt;|1=2|5=&lt;mysql dsn&gt;|10=0|<strong>13=2</strong>", "&lt;mysql-password&gt;")</p>
+                                                        </dd>
+                                                        <dd>
+                                                            <p class="normaltermcontinued2">
+                                                            </p>
+                                                        </dd>
+                                                        <dt>For REDB-Metastore PostgreSQL:</dt>
+                                                        <dd>
+                                                            <p class="normaltermcontinued2">Call oPersistenceUnit.ReverseEngineer(oPropertyBag,, "SERVER=35:16:0|AUTHENTICATION=4|USER=postgres|5=PostgreSQL30|<strong>14=1</strong>", "&lt;postgresql-password&gt;")</p>
+                                                        </dd>
+                                                        <dt>For REDB-Cassandra using Connection String method:</dt>
+                                                        <dd>
+                                                            <p class="normaltermcontinued2">Call oPersistenceUnit.ReverseEngineer(oPropertyBag,, "SERVER=22:3:0|AUTHENTICATION=4|USER=adminNew|6=&lt;connection_string_url&gt;|14=4")</p>
+                                                        </dd>
+                                                        <dt>For REDB-MongoDB using Direct method:</dt>
+                                                        <dd>
+                                                            <p class="normaltermcontinued2">Call oPersistenceUnit.ReverseEngineer(oPropertyBag,, "SERVER=22:3:0|AUTHENTICATION=4|USER=adminNew|6=&lt;connection_string_url&gt;|14=4")</p>
+                                                        </dd>
+                                                    </dl>
+                                                    <p class="bodytext"><strong>Reverse Engineering Sample Script:</strong>
+                                                    </p><pre xml:space="preserve">
+Dim oAPI
+    	Set oAPI = CreateObject("erwin9.SCAPI.9.0")
+        Dim oPropertyBag
+	Set oPropertyBag = CreateObject("erwin9.SCAPI.PropertyBag.9.0")
+        Call oPropertyBag.Add("Model_Type", "Combined")
+        Call oPropertyBag.Add("Target_Server", 1075859016)
+        Call oPropertyBag.Add("Target_Server_Version", 10)
+        Dim oPUnitCol
+        Set oPUnitCol = oApi.PersistenceUnits
+        Dim oPersistenceUnit
+        Set oPersistenceUnit = oPUnitCol.Create(oPropertyBag)
+        'oPropertyBag = CreateObject("erwin9.SCAPI.PropertyBag.9.0")
+        'oPropertyBag = oApi.ApplicationEnvironment.PropertyBag
+        oPropertyBag.ClearAll()
+        Call oPropertyBag.Add("System_Objects", True)
+        Call oPropertyBag.Add("Oracle_Use_DBA_Views", False)
+        Call oPropertyBag.Add("Synch_Owned_Only", False)
+        Call oPropertyBag.Add("Synch_Owned_Only_Name", "")
+        Call oPropertyBag.Add("Case_Option", 25091)
+        Call oPropertyBag.Add("Logical_Case_Option", 25046)
+        Call oPropertyBag.Add("Infer_Primary_Keys", False)
+        Call oPropertyBag.Add("Infer_Relations", False)
+        Call oPropertyBag.Add("Infer_Relations_Indexes", False)
+        Call oPropertyBag.Add("Remove_ERwin_Generated_Triggers", False)
+        Call oPropertyBag.Add("Force_Physical_Name_Option", False)
+	 Call oPropertyBag.Add("Synch_Table_Filter_By_Name", "")
+        Call oPersistenceUnit.ReverseEngineer(oPropertyBag, "c:\\re.xml", 
+	 "SERVER=16:10:0|AUTHENTICATION=4|USER=erwin|1=3|2=r8|3=127.0.0.1
+	 \\erwin_mart01", "ca123456")
+Call oPersistenceUnit.Save("c:\\test.erwin", "OVF=Yes")
+</pre>
+                                                    <p class="bodytext"><b>Attach NSM file with API while REDB:</b>
+                                                        <p class="bodytext">An additional property,ReverseEngineerCSV, is available to attach an NSM file with API while doing REDB. This property enables you to select an NSM file for reverse engineering.</p>
+                                                        <p class="bodytext"><strong>Reverse Engineering Sample Script:</strong>
+                                                        </p>
+                                                    </p><pre xml:space="preserve">Dim oAPI
+        Set oAPI = CreateObject("ERwin9.SCAPI.9.0")
+        Dim oPropertyBag
+        Set oPropertyBag = CreateObject("ERwin9.SCAPI.PropertyBag.9.0")
+        'Create LP model with Database as SQL Server 2012
+        Call oPropertyBag.Add("Model_Type", "Combined")
+        Call oPropertyBag.Add("Target_Server", 1075859016)
+        Call oPropertyBag.Add("Target_Server_Version", 11)
+        'Create Persistence Unit
+        Dim oPUnitCol
+        Set oPUnitCol = oApi.PersistenceUnits
+        'Create Propertybag
+        Dim oPersistenceUnit
+        Set oPersistenceUnit = oPUnitCol.Create(oPropertyBag)
+        'Clear all propertybag objects
+        oPropertyBag.ClearAll()
+        Call oPropertyBag.Add("System_Objects", False)
+        Call oPropertyBag.Add("Oracle_Use_DBA_Views", False)
+        Call oPropertyBag.Add("Synch_Owned_Only", False)
+        Call oPropertyBag.Add("Synch_Owned_Only_Name", "")
+        Call oPropertyBag.Add("Case_Option", 25091)
+        Call oPropertyBag.Add("Logical_Case_Option", 25046)
+        Call oPropertyBag.Add("Infer_Primary_Keys", False)
+        Call oPropertyBag.Add("Infer_Relations", False)
+        Call oPropertyBag.Add("Infer_Relations_Indexes", False)
+        Call oPropertyBag.Add("Remove_ERwin_Generated_Triggers", False)
+        Call oPropertyBag.Add("Force_Physical_Name_Option", False)
+        'Reverse Engineer the SQL Server 2012 DB
+        Call oPersistenceUnit.ReverseEngineerCSV (oPropertyBag, 
+	 "C:\Users\Administrator\Desktop\NSM-API\table.xml", 
+	 "C:\Users\Administrator\Desktop\NSM-API\res_demo.csv", 
+	"SERVER=16:11:0|AUTHENTICATION=4|USER=sa|1=3|2=TestDG|3=localhost|11=0", 
+	"Erwin123")
+        'Save the RE'd model
+        Call oPersistenceUnit.Save("C:\Users\Administrator\Desktop\NSM-API\
+	SQS2016RECSV.erwin", "OVF=Yes")</pre>
+                                                </div>
+                                                <hr color="#cccccc" width="100%" size="0" />
+                                                <p />
+                                                <!--<table style="mc-table-style: url('../TableStyles/FeedbackTable.css');border-top-left-radius: 6px;border-top-right-radius: 6px;border-bottom-right-radius: 6px;border-bottom-left-radius: 6px;border-left-style: solid;border-left-width: 1px;border-left-color: #2796c5;border-right-style: solid;border-right-width: 1px;border-right-color: #2796c5;border-top-style: solid;border-top-width: 1px;border-top-color: #2796c5;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #2796c5;width: 100%;" class="TableStyle-FeedbackTable" cellspacing="0">
+                        <col class="TableStyle-FeedbackTable-Column-Column1" />
+                        <tr class="TableStyle-FeedbackTable-Body-Body1">
+                            <td valign="top" class="TableStyle-FeedbackTable-BodyD-Column1-Body1" style="padding-left: 25px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;">
+                                <p class="feedbackheading">Was this helpful?</p>
+                                <form id="ratings">
+                                    <fieldset>
+                                        <label for="radio1" title="Yes" class="bold">Yes</label>
+                                        <input class="radio" id="radio1" name="group1" title="Yes" type="radio" value="Yes" />
+                                        <label for="radio1" title="No" class="bold">No</label>
+                                        <input class="radio" id="radio2" name="group1" title="No" type="radio" value="No" />
+                                    </fieldset><a class="ilink" href="javascript:sendRating();" type="submit">Send feedback</a>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                    <table border="0" cellpadding="2" cellspacing="0" class="copyrighttable" role="presentation" width="100%">
+                        <col />
+                        <tr>
+                            <td valign="top">
+                                <p id="foo" class="bodytext">
+                                    <p>Copyright © <MadCap:variable name="General.Year" /> <MadCap:variable name="General.CompanyName" /><br />All rights reserved. All trademarks, trade names, service marks, and logos referenced herein belong to their respective companies.</p>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>-->
+                                                <div class="feedback-block">
+                                                    <p><strong>Was this helpful?</strong>
+                                                    </p>
+                                                    <form id="ratings">
+                                                        <fieldset>
+                                                            <div class="option-row">
+                                                                <input id="radio1" name="group1" type="radio" value="Yes" />
+                                                                <label for="radio1" title="Yes">Yes</label>
+                                                            </div>
+                                                            <div class="option-row">
+                                                                <input id="radio2" name="group1" type="radio" value="No" />
+                                                                <label for="radio2" title="No">No</label>
+                                                            </div>
+                                                        </fieldset><a class="ilink" href="javascript:sendRating();" type="submit">Send feedback</a>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><a data-close="true"></a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,5 @@
+{
+  "xml.server.preferBinary": true,
+  "xml.server.vmargs": "-Xmx1024m",
+  "xml.trace.server": "messages"
+}

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" class="_Skins_HTML5___Top_Navigation" data-mc-search-type="Stem" data-mc-help-system-file-name="erwinBookshelf.xml" data-mc-path-to-help-system="../../../" data-mc-has-content-body="True" data-mc-toc-path="References|API Reference|API Components|erwin Spy" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript">
+    </script>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="msapplication-config" content="../../../Skins/Favicons/browserconfig.xml" />
+        <meta name="componentcd" content="&lt;authorit:componentcd&gt;" />
+        <meta name="objectid" content="6456" />
+        <meta name="basedOnKey" content="306" />
+        <meta name="keywords" content="&lt;authorit:ca_keywords&gt;" />
+        <meta name="ca_content_type" content="&lt;authorit:ca_content_type&gt;" />
+        <meta name="ca_context" content="&lt;authorit:ca_context&gt;" />
+        <meta name="ca_role" content="&lt;authorit:ca_role&gt;" />
+        <meta name="ca_language" content="en-US" />
+        <meta name="ca_offering_name" content="&lt;authorit:ca_offering_name&gt;" />
+        <meta name="ca_product_version" content="&lt;authorit:ca_product_version&gt;" />
+        <meta name="ca_product_family" content="&lt;authorit:ca_product_family&gt;" />
+        <meta name="ca_alias_name" content="&lt;authorit:ca_alias_name&gt;" />
+        <meta name="ca_related_offering" content="&lt;authorit:ca_related_offering&gt;" />
+        <meta name="ca_access_level" content="&lt;authorit:ca_access_level&gt;" />
+        <meta name="ca_date_time" content="8/29/2018T10:23-5:00" />
+        <meta name="ca_creator" content="(supervisor)" />
+        <meta name="ca_source" content="&lt;authorit:ca_source&gt;" />
+        <meta name="ca_format" content="HTML" />
+        <meta name="ca_database" content="&lt;authorit:ca_database&gt;" />
+        <meta name="ca_application_server" content="&lt;authorit:ca_application_server&gt;" />
+        <meta name="ca_operating_system" content="&lt;authorit:ca_operating_system&gt;" />
+        <meta name="ca_star_code" content="&lt;authorit:ca_star_code&gt;" />
+        <meta name="ca_cms_id" content="&lt;authorit:ca_cms_id&gt;" />
+        <link rel="shortcut icon" href="../../../Skins/Favicons/favicon-32x32.png" />
+        <link rel="icon" sizes="32x32" href="../../../Skins/Favicons/favicon-32x32.png" />
+        <link rel="icon" sizes="16x16" href="../../../Skins/Favicons/favicon-16x16.png" />
+        <meta charset="utf-8" /><title>How the erwin Spy Application Works</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Print.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Fluid/Stylesheets/foundation.6.2.3.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Fluid/Stylesheets/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Fluid/Stylesheets/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Fluid/Stylesheets/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Fluid/Stylesheets/Print.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+        <link href="../../Resources/TableStyles/FeedbackTable.css" rel="stylesheet" data-mc-stylesheet-type="table" />
+        <style>/*&lt;meta /&gt;*/
+
+.button.previous-topic-button
+{
+	-pie-background: linear-gradient(#ffffff, #ececec);
+}
+
+.button.next-topic-button
+{
+	-pie-background: linear-gradient(#ffffff, #ececec);
+}
+
+.button.print-button
+{
+	-pie-background: linear-gradient(#ffffff, #ececec);
+}
+
+.needs-pie
+{
+	behavior: url('../../../Resources/Scripts/PIE-no-motw.htc');
+}
+
+</style>
+        <link href="../../Resources/Stylesheets/stylesheet.css" rel="stylesheet" type="text/css" />
+        <link href="../../Resources/Stylesheets/docsstylesheet.css" rel="stylesheet" type="text/css" />
+        <link rel="shortcut icon" href="../../../Skins/Favicons/favicon-32x32.png" />
+        <link rel="icon" sizes="32x32" href="../../../Skins/Favicons/favicon-32x32.png" />
+        <link rel="icon" sizes="16x16" href="../../../Skins/Favicons/favicon-16x16.png" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/purify.min.js" type="text/javascript" defer="defer">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" type="text/javascript" defer="defer">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" type="text/javascript" defer="defer">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.6.2.3_custom.js" type="text/javascript" defer="defer">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" type="text/javascript" defer="defer">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" type="text/javascript" defer="defer">
+        </script>
+        <script type="text/javascript" src="../../../Skins/Default/Scripts/TopicToolBar.js">
+        </script>
+    </head>
+    <body>
+        <div class="foundation-wrap off-canvas-wrapper">
+            <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper="">
+                <aside class="off-canvas position-left" role="complementary" id="offCanvas" data-off-canvas="" data-position="left" data-mc-ignore="true">
+                    <ul class="off-canvas-drilldown vertical menu off-canvas-list" data-drilldown="" data-mc-back-link="Back" data-mc-css-tree-node-expanded="is-drilldown-submenu-parent" data-mc-css-tree-node-collapsed="is-drilldown-submenu-parent" data-mc-css-sub-menu="vertical menu slide-in-left is-drilldown-submenu" data-mc-include-indicator="False" data-mc-include-icon="False" data-mc-include-parent-link="True" data-mc-include-back="True" data-mc-defer-expand-event="True" data-mc-expanded-event="open.zf.drilldown closed.zf.drilldown" data-mc-expand-event="click.zf.drilldown" data-mc-toc="True">
+                    </ul>
+                </aside>
+                <div class="off-canvas-content inner-wrap" data-off-canvas-content="">
+                    <div data-sticky-container="" class="title-bar-container">
+                        <nav class="title-bar tab-bar sticky" aria-label="Main navigation and search" data-sticky="" data-options="marginTop:0" style="width:100%" data-sticky-on="only screen and (max-width: 1279px)" data-mc-ignore="true"><a class="skip-to-content fluid-skip showOnFocus" href="#">Skip To Main Content</a>
+                            <div class="middle title-bar-section outer-row clearfix">
+                                <div class="menu-icon-container relative clearfix">
+                                    <div class="central-account-wrapper">
+                                        <div class="central-dropdown"><a class="central-account-drop"><span class="central-account-image"></span><span class="central-account-text">Account</span></a>
+                                            <div class="central-dropdown-content"><a class="MCCentralLink central-dropdown-content-settings">Settings</a>
+                                                <hr class="central-separator" /><a class="MCCentralLink central-dropdown-content-logout">Logout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="menu-icon" aria-label="Show Navigation Panel" data-toggle="offCanvas"><span></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="title-bar-layout outer-row">
+                                <div class="logo-wrapper"><a class="logo" href="../../Home.htm" alt="Logo"></a>
+                                </div>
+                                <div class="navigation-wrapper nocontent">
+                                    <ul class="navigation clearfix" data-mc-css-tree-node-has-children="has-children" data-mc-css-sub-menu="sub-menu" data-mc-expand-event="mouseenter" data-mc-top-nav-menu="True" data-mc-max-depth="2" data-mc-include-icon="False" data-mc-include-indicator="False" data-mc-include-children="True" data-mc-include-siblings="True" data-mc-include-parent="True" data-mc-toc="True">
+                                        <li class="placeholder" style="visibility:hidden"><a>placeholder</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="central-account-wrapper">
+                                    <div class="central-dropdown"><a class="central-account-drop"><span class="central-account-image"></span><span class="central-account-text">Account</span></a>
+                                        <div class="central-dropdown-content"><a class="MCCentralLink central-dropdown-content-settings">Settings</a>
+                                            <hr class="central-separator" /><a class="MCCentralLink central-dropdown-content-logout">Logout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="nav-search-wrapper">
+                                    <div class="nav-search row">
+                                        <form class="search" action="#">
+                                            <div class="search-bar search-bar-container needs-pie">
+                                                <input class="search-field needs-pie" type="search" aria-label="Search Field" placeholder="Search" />
+                                                <div class="search-filter-wrapper"><span class="invisible-label" id="search-filters-label">Filter: </span>
+                                                    <div class="search-filter" aria-haspopup="true" aria-controls="sf-content" aria-expanded="false" aria-label="Search Filter" title="All Files" role="button" tabindex="0">
+                                                    </div>
+                                                    <div class="search-filter-content" id="sf-content">
+                                                        <ul>
+                                                            <li>
+                                                                <button class="mc-dropdown-item" aria-labelledby="search-filters-label filterSelectorLabel-00001"><span id="filterSelectorLabel-00001">All Files</span>
+                                                                </button>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="search-submit-wrapper" dir="ltr">
+                                                    <div class="search-submit" title="Search" role="button" tabindex="0"><span class="invisible-label">Submit Search</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="main-section">
+                        <div class="row outer-row sidenav-layout">
+                            <nav class="sidenav-wrapper">
+                                <div class="sidenav-container">
+                                    <ul class="off-canvas-accordion vertical menu sidenav" data-accordion-menu="" data-mc-css-tree-node-expanded="is-accordion-submenu-parent" data-mc-css-tree-node-collapsed="is-accordion-submenu-parent" data-mc-css-sub-menu="vertical menu accordion-menu is-accordion-submenu nested" data-mc-include-indicator="False" data-mc-include-icon="False" data-mc-include-parent-link="False" data-mc-include-back="False" data-mc-defer-expand-event="True" data-mc-expanded-event="down.zf.accordionMenu up.zf.accordionMenu" data-mc-expand-event="click.zf.accordionMenu" data-mc-toc="True" data-mc-side-nav-menu="True">
+                                    </ul>
+                                </div>
+                            </nav>
+                            <div class="body-container">
+                                <div data-mc-content-body="True">
+                                    <div>
+                                        <div id="contentBody">
+                                            <div>
+                                                <div class="sideContent">
+                                                    <div>
+                                                        <div class="buttons popup-container clearfix topicToolbarProxy _Skins_TopicToolBar mc-component nocontent" style="mc-topic-toolbar-items: AddTopicToFavorites PreviousTopic NextTopic Print;">
+                                                            <div class="button-group-container-left">
+                                                                <button class="button needs-pie previous-topic-button" title="Navigate previous" disabled="true">
+                                                                    <div>
+                                                                        <div role="img" class="button-icon-wrapper" aria-label="Navigate previous">
+                                                                            <div class="button-icon"> </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </button>
+                                                                <button class="button needs-pie next-topic-button" title="Navigate next" disabled="true">
+                                                                    <div>
+                                                                        <div role="img" class="button-icon-wrapper" aria-label="Navigate next">
+                                                                            <div class="button-icon"> </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </button>
+                                                                <button class="button needs-pie print-button" title="Print">
+                                                                    <div>
+                                                                        <div role="img" class="button-icon-wrapper" aria-label="Print">
+                                                                            <div class="button-icon"> </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="nocontent">
+                                                    <div class="MCBreadcrumbsBox_0 breadcrumbs" role="navigation" aria-label="Breadcrumbs" data-mc-breadcrumbs-divider="  |  " data-mc-breadcrumbs-count="4" data-mc-toc="True"><span class="MCBreadcrumbsPrefix"> </span>
+                                                    </div>
+                                                </div>
+                                                <div role="main" id="mc-main-content">
+                                                    <p class="bodytext"><a name="aanchor23"></a>
+                                                        <MadCap:concept term="References" />
+                                                    </p>
+                                                    <h3 class="heading3" id="t6456">How the erwin Spy Application Works</h3>
+                                                    <p class="bodytext">To see how erwin Spy can help you visualize metadata information, do the following:</p>
+                                                    <ul class="listbullet">
+                                                        <li class="listbullet">Start with an empty logical-physical model.
+</li>
+                                                        <li class="listbullet">Click erwin Spy on the Tools, Add-Ins menu to launch erwin Spy.
+<p class="noteAlt">Ensure that you have added the erwin Spy application as a erwin DM add-in application on the Tools, Add-Ins menu. See the Add-In Manager online help for more information on defining an add-in software application. </p></li>
+                                                        <li class="listbullet">Select the top item on the Models menu in erwin Spy, which should be your empty model.
+</li>
+                                                        <li class="listbullet">Double-click the Model object in the left pane to expand it. You should see a picture similar to the following illustration:
+<p class="picturefull"><img align="bottom" alt="" border="0" hspace="0" id="f6056" src="../../Resources/Images/6056_638x327.png" vspace="0" style="width: 638;height: 327;" /></p></li>
+                                                    </ul>
+                                                    <p class="bodytext">There are many objects listed by erwin Spy. Even though the model is empty, you still see objects there that represent erwin DM defaults, such as <em class="italic">Domains</em>, <em class="italic">Main Subject Area</em>, <em class="italic">Trigger Templates</em>, and so on. All default objects are marked with a { Default; } flag to the right of the type of the model object.</p>
+                                                    <p class="bodytext">The right pane of erwin Spy displays object properties. To see a specific object's properties, select the object, click the button located in the center of the screen, and the selected object's properties display in the right panel. The following illustration shows the properties of a specific entity that was added to this model:</p>
+                                                    <p class="picturefull">
+                                                        <img align="bottom" alt="" border="0" hspace="0" id="f6057" src="../../Resources/Images/6057_638x414.png" vspace="0" style="width: 638;height: 414;" />
+                                                    </p>
+                                                    <p class="bodytext">The first column shows property names, such as <em class="italic">Name</em>, <em class="italic">Long ID</em>, <em class="italic">Type</em>, <em class="italic">Physical Name</em>, and so on.</p>
+                                                    <p class="bodytext">The second column, DT, shows property datatypes, such as <em class="italic">Str</em> for a string, <em class="italic">I4</em> for a number, <em class="italic">Bool</em> for Boolean, <em class="italic">Id</em> for a reference to another object, and so on.</p>
+                                                    <p class="bodytext">The third column, Value, displays the property value in native format.</p>
+                                                    <p class="bodytext">The fourth column, As String, displays the property value reinterpreted as a string. To understand this better, look at Physical Name in the left column. Its value in the Value column is <em class="italic">%EntityName()</em>, which is a macro, while As String holds the macro expansion, <em class="italic">Entity_1</em>.</p>
+                                                    <p class="bodytext">The rest of the columns in the right pane represent property flags. The following list describes the meaning of these columns:</p>
+                                                    <dl>
+                                                        <dt>NL</dt>
+                                                        <dd>
+                                                            <p class="normaltermcontinued">Displays properties with NULL/no value. </p>
+                                                            <p class="noteAlt">The flag is never on for erwin Spy.</p>
+                                                        </dd>
+                                                        <dt>UD</dt>
+                                                        <dd>
+                                                            <p class="normaltermcontinued">Displays user-defined properties.</p>
+                                                        </dd>
+                                                        <dt>VC</dt>
+                                                        <dd>
+                                                            <p class="normaltermcontinued">Displays vector properties.</p>
+                                                        </dd>
+                                                        <dt>TL</dt>
+                                                        <dd>
+                                                            <p class="normaltermcontinued">Displays properties that are maintained by erwin DM and that cannot be changed directly using the API.</p>
+                                                        </dd>
+                                                        <dt>RO</dt>
+                                                        <dd>
+                                                            <p class="normaltermcontinued">Displays read-only properties.</p>
+                                                        </dd>
+                                                        <dt>DR</dt>
+                                                        <dd>
+                                                            <p class="normaltermcontinued">Displays derived properties whose value was inherited (from a parent domain, for example).</p>
+                                                        </dd>
+                                                        <dt>Facets True</dt>
+                                                        <dd>
+                                                            <p class="normaltermcontinued">Displays the facet value of a property that is set to True.</p>
+                                                        </dd>
+                                                        <dt>Facets False</dt>
+                                                        <dd>
+                                                            <p class="normaltermcontinued">Displays the facet value of a property that is set to False.</p>
+                                                        </dd>
+                                                    </dl>
+                                                    <p class="bodytext">In the previous illustration, a primary key attribute named <em class="italic">ATTR01</em> was added to <em class="italic">Entity_1</em>. It was migrated to <em class="italic">Entity_2</em> by creating an identifying relationship. When you double-click <em class="italic">Entity_2</em>, and then select <em class="italic">ATTR01</em>, you can see how erwin Spy displays the information. You can click the button in the center of the screen to view its properties on the right.</p>
+                                                    <p class="picturefull">
+                                                        <img align="bottom" alt="" border="0" hspace="0" id="f6058" src="../../Resources/Images/6058_663x295.png" vspace="0" style="width: 663;height: 295;" />
+                                                    </p>
+                                                    <p class="bodytext">Since the attribute for the <em class="italic">Parent_Relationship_Ref</em> property is a product of foreign key migration, this property shows which relationship object is used to store data about it. The value Id in the DT column shows that the property is a reference, which means that the value is a unique ID of the involved relationship object.</p>
+                                                    <p class="bodytext">Look at the name in the As String column or locate an object by its unique ID to traverse back to the relationship object. To see object IDs, click Show Ids on the File, Options menu. With this option enabled, when the cursor is positioned over an object in the left panel, that object's unique ID is displayed in a popup window, as shown in the following illustration:</p>
+                                                    <p class="picture">
+                                                        <img align="bottom" alt="" border="0" hspace="0" id="f6059" src="../../Resources/Images/6059_353x409.png" vspace="0" style="width: 353;height: 409;" />
+                                                    </p>
+                                                    <p class="bodytext">Now compare the <em class="italic">Parent_Relationship_Ref</em> property with the <em class="italic">Parent_Attribute_Ref</em> and the <em class="italic">Master_Attribute_Ref</em> properties. The <em class="italic">Master_Attribute_Ref</em> property is read-only. This means that it is displayed for informational purposes only and cannot be changed using the API. As you build your model, you can expand objects in the model to see how erwin DM uses their properties to represent different relationships in the model.</p>
+                                                    <p class="bodytext">Use the erwin Spy utility to see and understand the details of the data in a erwin DM model that is available through the API. If you need to learn how particular data is represented in a erwin DM model, you can use the scenarios that were just described. Start with an empty model, create the minimum model that is necessary to represent the feature in question, and then use erwin Spy to look at the details of the data representation.</p>
+                                                    <p>
+                                                    </p>
+                                                </div>
+                                                <hr color="#cccccc" width="100%" size="0" />
+                                                <p />
+                                                <!--<table style="mc-table-style: url('../TableStyles/FeedbackTable.css');border-top-left-radius: 6px;border-top-right-radius: 6px;border-bottom-right-radius: 6px;border-bottom-left-radius: 6px;border-left-style: solid;border-left-width: 1px;border-left-color: #2796c5;border-right-style: solid;border-right-width: 1px;border-right-color: #2796c5;border-top-style: solid;border-top-width: 1px;border-top-color: #2796c5;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #2796c5;width: 100%;" class="TableStyle-FeedbackTable" cellspacing="0">
+                        <col class="TableStyle-FeedbackTable-Column-Column1" />
+                        <tr class="TableStyle-FeedbackTable-Body-Body1">
+                            <td valign="top" class="TableStyle-FeedbackTable-BodyD-Column1-Body1" style="padding-left: 25px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;">
+                                <p class="feedbackheading">Was this helpful?</p>
+                                <form id="ratings">
+                                    <fieldset>
+                                        <label for="radio1" title="Yes" class="bold">Yes</label>
+                                        <input class="radio" id="radio1" name="group1" title="Yes" type="radio" value="Yes" />
+                                        <label for="radio1" title="No" class="bold">No</label>
+                                        <input class="radio" id="radio2" name="group1" title="No" type="radio" value="No" />
+                                    </fieldset><a class="ilink" href="javascript:sendRating();" type="submit">Send feedback</a>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                    <table border="0" cellpadding="2" cellspacing="0" class="copyrighttable" role="presentation" width="100%">
+                        <col />
+                        <tr>
+                            <td valign="top">
+                                <p id="foo" class="bodytext">
+                                    <p>Copyright © <MadCap:variable name="General.Year" /> <MadCap:variable name="General.CompanyName" /><br />All rights reserved. All trademarks, trade names, service marks, and logos referenced herein belong to their respective companies.</p>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>-->
+                                                <div class="feedback-block">
+                                                    <p><strong>Was this helpful?</strong>
+                                                    </p>
+                                                    <form id="ratings">
+                                                        <fieldset>
+                                                            <div class="option-row">
+                                                                <input id="radio1" name="group1" type="radio" value="Yes" />
+                                                                <label for="radio1" title="Yes">Yes</label>
+                                                            </div>
+                                                            <div class="option-row">
+                                                                <input id="radio2" name="group1" type="radio" value="No" />
+                                                                <label for="radio2" title="No">No</label>
+                                                            </div>
+                                                        </fieldset><a class="ilink" href="javascript:sendRating();" type="submit">Send feedback</a>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><a data-close="true"></a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
