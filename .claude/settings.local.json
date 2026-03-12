@@ -3,7 +3,12 @@
     "allow": [
       "Bash(uv run python -c \":*)",
       "Bash(python -c \":*)",
-      "Read(//c/Users/sidne/.claude/projects/c--Users-sidne-Desktop-erwinDM-save-to-xml/memory/**)"
+      "Read(//c/Users/sidne/.claude/projects/c--Users-sidne-Desktop-erwinDM-save-to-xml/memory/**)",
+      "Bash(ls c:UserssidneDesktoperwinDM_save_to_xml/*.py)",
+      "WebFetch(domain:mart.dacorp.net.br)",
+      "Bash(curl -sk https://mart.dacorp.net.br/MartServer/v3/api-docs)",
+      "Bash(python3 -c \":*)",
+      "Bash(curl -skI https://mart.dacorp.net.br/MartServer/csrf)"
     ],
     "additionalDirectories": [
       "C:\\temp"

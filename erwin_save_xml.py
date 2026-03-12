@@ -1,5 +1,6 @@
 import win32com.client
 import os
+import json
 import urllib.request
 import ssl
 import xml.etree.ElementTree as ET
@@ -71,6 +72,57 @@ def _env_obrigatorio(nome: str) -> str:
     if not valor:
         raise RuntimeError(f"Variavel obrigatoria ausente: {nome}")
     return valor
+
+
+def _obter_xsrf_token(base_url: str) -> str:
+    """GET /MartServer/csrf — retorna XSRF-TOKEN do header (resposta pode ser 403/401)."""
+    csrf_url = f"{base_url}/MartServer/csrf"
+    req = urllib.request.Request(csrf_url, method="GET")
+    req.add_header("accept", "*/*")
+    xsrf_token = None
+    try:
+        with urllib.request.urlopen(req, context=_SSL_CTX, timeout=30) as resp:
+            xsrf_token = resp.headers.get("XSRF-TOKEN")
+    except urllib.error.HTTPError as e:
+        xsrf_token = e.headers.get("XSRF-TOKEN")
+    if not xsrf_token:
+        raise RuntimeError("XSRF-TOKEN nao encontrado no header da resposta do CSRF")
+    return xsrf_token
+
+
+def _gerar_token_mart(base_url: str, username: str, password: str) -> tuple[str, str]:
+    """
+    Autentica no Mart Server e retorna (bearer_token, xsrf_token).
+
+    Etapa 1: GET /MartServer/csrf  -> captura XSRF-TOKEN do header (retorna 403,
+             mas o header XSRF-TOKEN e enviado mesmo assim).
+    Etapa 2: POST /MartServerCloud/jwt/authenticate/login -> retorna { "id_token": "..." }.
+    """
+    # Etapa 1: XSRF token
+    print(f"[INFO] Obtendo XSRF token: {base_url}/MartServer/csrf")
+    xsrf_token = _obter_xsrf_token(base_url)
+    print("[INFO] XSRF-TOKEN obtido")
+
+    # Etapa 2: login JWT
+    login_url = f"{base_url}/MartServerCloud/jwt/authenticate/login"
+    print(f"[INFO] Autenticando: {login_url}")
+    payload = json.dumps({"username": username, "password": password}).encode("utf-8")
+    req2 = urllib.request.Request(login_url, data=payload, method="POST")
+    req2.add_header("accept", "*/*")
+    req2.add_header("Content-Type", "application/json")
+    req2.add_header("X-XSRF-TOKEN", xsrf_token)
+    with urllib.request.urlopen(req2, context=_SSL_CTX, timeout=30) as resp2:
+        corpo = resp2.read().decode("utf-8")
+    try:
+        dados = json.loads(corpo)
+        bearer = dados.get("id_token") or ""
+    except Exception:
+        bearer = corpo.strip()
+
+    if not bearer:
+        raise RuntimeError("Bearer token nao encontrado na resposta do login")
+    print("[INFO] Autenticacao concluida com sucesso")
+    return bearer, xsrf_token
 
 
 def _montar_conn_str_mart(
@@ -501,8 +553,21 @@ if __name__ == "__main__":
     os.makedirs(TEMP,       exist_ok=True)
 
     MART_URL     = _env_obrigatorio("MART_URL")
-    BEARER       = _env_obrigatorio("MART_BEARER_TOKEN")
-    XSRF         = _env_obrigatorio("MART_XSRF_TOKEN")
+    _protocolo   = os.getenv("MART_PROTOCOL", "https")
+    BEARER_ENV   = os.getenv("MART_BEARER_TOKEN", "").strip()
+    XSRF_ENV     = os.getenv("MART_XSRF_TOKEN", "").strip()
+    if not BEARER_ENV:
+        print("[INFO] MART_BEARER_TOKEN nao informado — gerando token automaticamente")
+        _user = _env_obrigatorio("USER_MART")
+        _pass = _env_obrigatorio("PASS_MART")
+        BEARER, XSRF = _gerar_token_mart(_montar_base_url_api(MART_URL, _protocolo), _user, _pass)
+    elif not XSRF_ENV:
+        print("[INFO] MART_XSRF_TOKEN nao informado — obtendo XSRF token")
+        XSRF   = _obter_xsrf_token(_montar_base_url_api(MART_URL, _protocolo))
+        BEARER = BEARER_ENV
+    else:
+        BEARER = BEARER_ENV
+        XSRF   = XSRF_ENV
     MART_CONN_BASE = _env_obrigatorio("MART_CONN_STR")
     USER_MART      = os.getenv("USER_MART", "").strip() or None
     PASS_MART      = os.getenv("PASS_MART", "").strip() or None
