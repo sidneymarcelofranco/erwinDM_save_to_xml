@@ -1,0 +1,27 @@
+2026-03-12 10:11:13 [INFO    ] Log iniciado: C:\Users\sidne\Desktop\erwinDM_save_to_xml\log\erwin_2026-03-12.log
+2026-03-12 10:11:13 [INFO    ] MART_BEARER_TOKEN nao informado — gerando token automaticamente
+2026-03-12 10:11:13 [INFO    ] Obtendo XSRF token: https://mart.dacorp.net.br/MartServer/csrf
+2026-03-12 10:11:13 [INFO    ] XSRF-TOKEN obtido
+2026-03-12 10:11:13 [INFO    ] Autenticando: https://mart.dacorp.net.br/MartServerCloud/jwt/authenticate/login
+2026-03-12 10:11:13 [INFO    ] Autenticacao concluida com sucesso
+2026-03-12 10:11:13 [INFO    ] Consultando Mart: https://mart.dacorp.net.br/MartServer/api/report/generateReport/Models
+2026-03-12 10:11:14 [INFO    ] HTTP 200 — 2,847 bytes recebidos
+2026-03-12 10:11:14 [INFO    ] Resposta salva em: C:\Users\sidne\Desktop\erwinDM_save_to_xml\output\mart_report\mart_models.xml
+2026-03-12 10:11:14 [INFO    ] Consultando Mart: https://mart.dacorp.net.br/MartServer/api/report/generateReport/Models
+2026-03-12 10:11:15 [INFO    ] HTTP 200 — 2,847 bytes recebidos
+2026-03-12 10:11:15 [INFO    ] Consultando Mart: https://mart.dacorp.net.br/MartServer/api/report/generateReport/Models
+2026-03-12 10:11:16 [INFO    ] HTTP 200 — 2,847 bytes recebidos
+2026-03-12 10:11:16 [INFO    ] Selecionado por data: Contrato_Pessoa_Produto (03/03/2026 04:12:29 PM)
+2026-03-12 10:11:16 [INFO    ] 1 modelo(s) a exportar
+2026-03-12 10:11:16 [DEBUG   ] Locator: mart://Mart/Modelos/Contrato_Pessoa_Produto?TRC=NO;PRT=443;ASR=MartServer;SSL=YES;SRV=mart.dacorp.net.br;UID=Administrator;PSW=Dacorp@2025
+2026-03-12 10:11:16 [DEBUG   ] Catalog_Path=Mart/Modelos  Catalog_Name=Contrato_Pessoa_Produto
+2026-03-12 10:11:16 [DEBUG   ] Saida: C:\Users\sidne\Desktop\erwinDM_save_to_xml\output\xml\Mart/Modelos\Contrato_Pessoa_Produto.xml
+2026-03-12 10:11:16 [INFO    ] SCAPI: conectando ao Mart
+2026-03-12 10:11:31 [DEBUG   ] SCAPI: sessao M0=True  M1=True
+2026-03-12 10:11:31 [INFO    ] SCAPI: salvando local em C:\Users\sidne\Desktop\erwinDM_save_to_xml\temp\Contrato_Pessoa_Produto.erwin
+2026-03-12 10:11:32 [DEBUG   ] SCAPI: Save() concluido
+2026-03-12 10:11:32 [DEBUG   ] SCAPI: arquivo temp 683,409 bytes
+2026-03-12 10:11:32 [INFO    ] Exportando via ERXML.XMLERwinLink
+2026-03-12 10:11:32 [DEBUG   ] Entrada : C:\Users\sidne\Desktop\erwinDM_save_to_xml\temp\Contrato_Pessoa_Produto.erwin
+2026-03-12 10:11:32 [DEBUG   ] Saida   : C:\Users\sidne\Desktop\erwinDM_save_to_xml\output\xml\Mart/Modelos\Contrato_Pessoa_Produto.xml
+2026-03-12 10:11:34 [INFO    ] XML exportado: C:\Users\sidne\Desktop\erwinDM_save_to_xml\output\xml\Mart/Modelos\Contrato_Pessoa_Produto.xml (3,410,282 bytes)

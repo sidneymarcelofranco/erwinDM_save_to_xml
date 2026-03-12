@@ -122,6 +122,8 @@ if "auto_switch_tab" not in st.session_state:
     st.session_state.auto_switch_tab = False
 if "running"         not in st.session_state:
     st.session_state.running         = False
+if "estrutura_feedback" not in st.session_state:
+    st.session_state.estrutura_feedback = None
 
 # ---------------------------------------------------------------------------
 # CSS: overlay de loading e bloqueio da sidebar durante execução
@@ -440,8 +442,28 @@ def abrir_no_navegador(caminho: Path) -> None:
     """, height=0)
 
 
+def excluir_xml(caminho: Path) -> tuple[bool, str]:
+    """Exclui fisicamente um arquivo XML do diretorio de saida."""
+    if caminho.suffix.lower() != ".xml":
+        return (False, "Apenas arquivos XML podem ser excluidos.")
+    try:
+        caminho.unlink()
+        return (True, f"Arquivo excluido: {caminho.name}")
+    except OSError as exc:
+        return (False, f"Erro ao excluir {caminho.name}: {exc}")
+
+
 with tab_saida:
     st.subheader("📂 Estrutura de saída")
+
+    feedback = st.session_state.estrutura_feedback
+    if feedback:
+        status, msg = feedback
+        if status == "ok":
+            st.success(msg)
+        else:
+            st.error(msg)
+        st.session_state.estrutura_feedback = None
 
     if not OUTPUT_DIR.exists() or not any(OUTPUT_DIR.iterdir()):
         st.info("Execute o script para gerar arquivos.")
@@ -459,7 +481,7 @@ with tab_saida:
                 icon  = "📋" if entry.suffix == ".xml" else "📄"
                 tamanho_kb = entry.stat().st_size / 1024
 
-                c_label, c_btn = st.columns([8, 1])
+                c_label, c_open, c_del = st.columns([7, 1, 1])
                 c_label.markdown(
                     f"<span style='font-size:0.9em'>"
                     f"{indent}{icon} {entry.name} "
@@ -467,5 +489,10 @@ with tab_saida:
                     f"</span>",
                     unsafe_allow_html=True,
                 )
-                if c_btn.button("🔗", key=f"open_{entry}", help=f"Abrir {entry.name} em nova aba"):
+                if c_open.button("🔗", key=f"open_{entry}", help=f"Abrir {entry.name} em nova aba"):
                     abrir_no_navegador(entry)
+                if entry.suffix.lower() == ".xml":
+                    if c_del.button("🗑️", key=f"del_{entry}", help=f"Excluir {entry.name}"):
+                        ok, msg = excluir_xml(entry)
+                        st.session_state.estrutura_feedback = ("ok" if ok else "erro", msg)
+                        st.rerun()
