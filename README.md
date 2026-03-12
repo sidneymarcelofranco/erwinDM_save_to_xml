@@ -15,17 +15,22 @@ Utilitario Python para:
 - [x] Abertura de modelos Mart via SCAPI
 - [x] Conversão para XML via ERXML
 - [x] Credenciais externalizadas em `.env`
+- [x] **Geração automática de token JWT** (CSRF + login) quando `MART_BEARER_TOKEN` não informado
 - [x] Injeção automática de credenciais na string de conexão
 - [x] Sobrescrita automática de XMLs sem prompts
 - [x] Estrutura de pastas organizada (mart_report, xml, temp)
 - [x] Tratamento de erros COM e HTTP
 
-**Pronto para usar:** Execute `uv run python erwin_save_xml.py` com `.env` preenchido.
+**Pronto para usar:** Configure `.env` com `USER_MART`/`PASS_MART` e execute `python erwin_save_xml.py`.
+
+> **Início rápido:** [QUICKSTART.md](QUICKSTART.md)
+> **Arquitetura da plataforma:** [docs/ARQUITETURA_MART.md](docs/ARQUITETURA_MART.md)
 
 ## Requisitos
 
 - erwin DM 15.2 instalado (registra as DLLs COM)
 - Python >= 3.14
+- Streamlit (instalado via `requirements.txt`)
 
 ## Instalação
 
@@ -68,15 +73,24 @@ copy .env.example .env
 
 Variaveis usadas pelo script:
 
-- `MART_URL`
-- `MART_BEARER_TOKEN`
-- `MART_XSRF_TOKEN`
-- `MART_CONN_STR` (base sem `UID` e `PSW`)
-- `USER_MART` (opcional, mas recomendado)
-- `PASS_MART` (opcional, mas recomendado)
-- `MART_UPDATED_ON_EXACT` (opcional, formato `MM/DD/YYYY`)
-- `MART_UPDATED_ON_MIN` (opcional, formato `MM/DD/YYYY`)
-- `MART_UPDATED_ON_MAX` (opcional, formato `MM/DD/YYYY`)
+| Variável | Obrigatória | Descrição |
+| -------- | ----------- | --------- |
+| `MART_URL` | Sim | Host do Mart Server (sem protocolo) |
+| `USER_MART` | Sim | Usuário para autenticação |
+| `PASS_MART` | Sim | Senha para autenticação |
+| `MART_CONN_STR` | Sim | Parâmetros COM (sem `UID`/`PSW`; seguir `.env.example`) |
+| `MART_BEARER_TOKEN` | Não | Token JWT — se vazio, gerado automaticamente via login |
+| `MART_XSRF_TOKEN` | Não | Token XSRF — se vazio, obtido automaticamente via `/csrf` |
+| `MART_PROTOCOL` | Não | `https` (padrão) ou `http` |
+| `MART_UPDATED_ON_EXACT` | Não | Filtro data exata (`MM/DD/YYYY`) |
+| `MART_UPDATED_ON_MIN` | Não | Filtro data mínima (`MM/DD/YYYY`) |
+| `MART_UPDATED_ON_MAX` | Não | Filtro data máxima (`MM/DD/YYYY`) |
+
+**Comportamento do token:**
+
+- `MART_BEARER_TOKEN` vazio → executa CSRF + login automaticamente com `USER_MART`/`PASS_MART`
+- `MART_BEARER_TOKEN` preenchido, `MART_XSRF_TOKEN` vazio → obtém apenas o XSRF via `/csrf`
+- Ambos preenchidos → usa os valores diretamente do `.env`
 
 Regras de filtro de data:
 - Exata: use apenas `MART_UPDATED_ON_EXACT`
@@ -177,6 +191,26 @@ print(resultado)
 ## Como Executar
 
 Configure o `.env` com seus dados sensíveis (veja seção **Configuração Segura**) e execute:
+
+### Interface Web (Streamlit)
+
+Execute pela raiz do projeto:
+
+```bash
+streamlit run app/app.py
+```
+
+Se estiver usando `uv`:
+
+```bash
+uv run streamlit run app/app.py
+```
+
+A interface permite:
+- editar e salvar o `.env`
+- executar a exportação com acompanhamento de log
+- limpar logs em `log/*.log`
+- navegar pela estrutura em `output` e abrir XML em nova aba
 
 ### Com `uv`:
 

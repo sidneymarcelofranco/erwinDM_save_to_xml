@@ -81,4 +81,13 @@
     <CreatedBy>administrator</CreatedBy>
     <UpdatedBy>administrator</UpdatedBy>
   </Model>
+  <Model>
+    <Id>65629</Id>
+    <Catalog_Name>ESOCIAL</Catalog_Name>
+    <Catalog_Path>Mart/Modelos</Catalog_Path>
+    <CreatedOn>03/12/2026 08:59:44 AM</CreatedOn>
+    <UpdatedOn>03/12/2026 08:59:44 AM</UpdatedOn>
+    <CreatedBy>administrator</CreatedBy>
+    <UpdatedBy>administrator</UpdatedBy>
+  </Model>
 </report_root>

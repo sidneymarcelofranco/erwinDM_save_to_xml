@@ -1,6 +1,7 @@
 import win32com.client
 import os
 import json
+import logging
 import urllib.request
 import ssl
 import xml.etree.ElementTree as ET
@@ -28,6 +29,51 @@ _SSL_CTX.verify_mode = ssl.CERT_NONE
 # Exemplo: "02/10/2026 12:17:35 PM"
 _MART_DATE_FMT = "%m/%d/%Y %I:%M:%S %p"
 
+# Logger do modulo — NullHandler por padrao (padrao de biblioteca Python).
+# Os handlers reais (arquivo + console) sao configurados pelo __main__.
+_log = logging.getLogger("erwin_save_xml")
+_log.addHandler(logging.NullHandler())
+
+
+# =============================================================================
+# LOGGING
+# =============================================================================
+
+def _configurar_log(log_dir: str) -> None:
+    """
+    Configura dois handlers para o logger do modulo:
+    - Arquivo : log_dir/erwin_YYYY-MM-DD.log  (nivel DEBUG — tudo)
+    - Console : somente WARNING e acima (erros que exigem atencao)
+    """
+    os.makedirs(log_dir, exist_ok=True)
+    nome_arquivo = datetime.now().strftime("erwin_%Y-%m-%d.log")
+    caminho_log  = os.path.join(log_dir, nome_arquivo)
+
+    fmt_arquivo  = logging.Formatter(
+        "%(asctime)s [%(levelname)-8s] %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
+    )
+    fmt_console  = logging.Formatter("[%(levelname)s] %(message)s")
+
+    fh = logging.FileHandler(caminho_log, encoding="utf-8")
+    fh.setLevel(logging.DEBUG)
+    fh.setFormatter(fmt_arquivo)
+
+    ch = logging.StreamHandler()
+    ch.setLevel(logging.WARNING)
+    ch.setFormatter(fmt_console)
+
+    _log.setLevel(logging.DEBUG)
+    _log.addHandler(fh)
+    _log.addHandler(ch)
+    _log.propagate = False
+
+    _log.info("Log iniciado: %s", caminho_log)
+
+
+# =============================================================================
+# HELPERS
+# =============================================================================
 
 def _normalizar_host_mart(mart_url: str) -> str:
     """Normaliza MART_URL para host sem protocolo e sem barra final."""
@@ -74,6 +120,10 @@ def _env_obrigatorio(nome: str) -> str:
     return valor
 
 
+# =============================================================================
+# AUTENTICACAO
+# =============================================================================
+
 def _obter_xsrf_token(base_url: str) -> str:
     """GET /MartServer/csrf — retorna XSRF-TOKEN do header (resposta pode ser 403/401)."""
     csrf_url = f"{base_url}/MartServer/csrf"
@@ -84,6 +134,7 @@ def _obter_xsrf_token(base_url: str) -> str:
         with urllib.request.urlopen(req, context=_SSL_CTX, timeout=30) as resp:
             xsrf_token = resp.headers.get("XSRF-TOKEN")
     except urllib.error.HTTPError as e:
+        # O endpoint retorna 403/401 mas envia XSRF-TOKEN no header mesmo assim
         xsrf_token = e.headers.get("XSRF-TOKEN")
     if not xsrf_token:
         raise RuntimeError("XSRF-TOKEN nao encontrado no header da resposta do CSRF")
@@ -99,13 +150,13 @@ def _gerar_token_mart(base_url: str, username: str, password: str) -> tuple[str,
     Etapa 2: POST /MartServerCloud/jwt/authenticate/login -> retorna { "id_token": "..." }.
     """
     # Etapa 1: XSRF token
-    print(f"[INFO] Obtendo XSRF token: {base_url}/MartServer/csrf")
+    _log.info("Obtendo XSRF token: %s/MartServer/csrf", base_url)
     xsrf_token = _obter_xsrf_token(base_url)
-    print("[INFO] XSRF-TOKEN obtido")
+    _log.info("XSRF-TOKEN obtido")
 
     # Etapa 2: login JWT
     login_url = f"{base_url}/MartServerCloud/jwt/authenticate/login"
-    print(f"[INFO] Autenticando: {login_url}")
+    _log.info("Autenticando: %s", login_url)
     payload = json.dumps({"username": username, "password": password}).encode("utf-8")
     req2 = urllib.request.Request(login_url, data=payload, method="POST")
     req2.add_header("accept", "*/*")
@@ -121,9 +172,13 @@ def _gerar_token_mart(base_url: str, username: str, password: str) -> tuple[str,
 
     if not bearer:
         raise RuntimeError("Bearer token nao encontrado na resposta do login")
-    print("[INFO] Autenticacao concluida com sucesso")
+    _log.info("Autenticacao concluida com sucesso")
     return bearer, xsrf_token
 
+
+# =============================================================================
+# CONEXAO / LOCATOR
+# =============================================================================
 
 def _montar_conn_str_mart(
     conn_str_base: str,
@@ -168,12 +223,20 @@ def montar_locator_mart(catalog_path: str, catalog_name: str, mart_conn_str: str
     return f"mart://Mart/{path_relativo}/{catalog_name}?{mart_conn_str}"
 
 
+# =============================================================================
+# XML
+# =============================================================================
+
 def _formatar_xml(caminho: str) -> None:
     """Le um arquivo XML, indenta e reescreve no mesmo caminho (UTF-8)."""
     tree = ET.parse(caminho)
     ET.indent(tree, space="  ")
     tree.write(caminho, encoding="utf-8", xml_declaration=True)
 
+
+# =============================================================================
+# API REST
+# =============================================================================
 
 def _fetch_modelos_mart(mart_url: str, bearer_token: str, xsrf_token: str) -> bytes | None:
     """
@@ -183,51 +246,57 @@ def _fetch_modelos_mart(mart_url: str, bearer_token: str, xsrf_token: str) -> by
     protocolo = os.getenv("MART_PROTOCOL", "https")
     base_url = _montar_base_url_api(mart_url, protocolo)
     endpoint = f"{base_url}/MartServer/api/report/generateReport/Models"
-    print(f"[INFO] Consultando Mart: {endpoint}")
+    _log.info("Consultando Mart: %s", endpoint)
     try:
         req = urllib.request.Request(endpoint)
         req.add_header("accept", "*/*")
         req.add_header("Authorization", f"Bearer {bearer_token}")
         req.add_header("X-XSRF-TOKEN", xsrf_token)
         with urllib.request.urlopen(req, context=_SSL_CTX, timeout=30) as resp:
-            status = resp.status
+            status   = resp.status
             conteudo = resp.read()
-        print(f"[INFO] HTTP {status} -- {len(conteudo):,} bytes recebidos")
+        _log.info("HTTP %s — %s bytes recebidos", status, f"{len(conteudo):,}")
         return conteudo
     except urllib.error.HTTPError as e:
-        print(f"[ERRO] HTTP {e.code}: {e.reason}")
+        _log.error("HTTP %s: %s", e.code, e.reason)
     except urllib.error.URLError as e:
-        print(f"[ERRO] Falha de conexao: {e.reason}")
-    except Exception as e:
-        print(f"[EXCECAO] {e}")
+        _log.error("Falha de conexao: %s", e.reason)
+    except Exception:
+        _log.exception("Erro inesperado em _fetch_modelos_mart")
     return None
 
 
+# =============================================================================
+# COM / EXPORT
+# =============================================================================
+
 def _exportar_via_com(locator: str, caminho_saida_xml: str) -> bool:
     """
-    Chama ERXML.XMLERwinLink.StandAloneExport e pós-processa o XML gerado.
+    Chama ERXML.XMLERwinLink.StandAloneExport e pos-processa o XML gerado.
 
     Aceita tanto caminhos locais quanto locators Mart (Mart://Mart/...).
     """
     if not caminho_saida_xml.lower().endswith(".xml"):
-        print("[AVISO] O caminho de saida nao possui extensao .xml.")
+        _log.warning("O caminho de saida nao possui extensao .xml.")
     try:
         # Evita dialogo de confirmacao de sobrescrita no COM.
         if os.path.exists(caminho_saida_xml):
+            _log.info("Removendo arquivo existente: %s", caminho_saida_xml)
+            # os.unlink ou os.remove — deleta um único arquivo do disco.
             os.unlink(caminho_saida_xml)
 
-        print(f"[INFO] Exportando via {ERWIN_XML_PROGID}")
-        print(f"[INFO] Entrada : {locator}")
-        print(f"[INFO] Saida   : {caminho_saida_xml}")
+        _log.info("Exportando via %s", ERWIN_XML_PROGID)
+        _log.debug("Entrada : %s", locator)
+        _log.debug("Saida   : %s", caminho_saida_xml)
         obj_xml = win32com.client.Dispatch(ERWIN_XML_PROGID)
         obj_xml.StandAloneExport(locator, caminho_saida_xml, 0)
         # COM nao retorna status — formata diretamente; erro de I/O indica falha
         _formatar_xml(caminho_saida_xml)
         tamanho = os.path.getsize(caminho_saida_xml)
-        print(f"[OK] XML exportado: {caminho_saida_xml} ({tamanho:,} bytes)")
+        _log.info("XML exportado: %s (%s bytes)", caminho_saida_xml, f"{tamanho:,}")
         return True
-    except Exception as e:
-        print(f"[EXCECAO] Erro na exportacao XML: {e}")
+    except Exception:
+        _log.exception("Erro na exportacao XML: %s", caminho_saida_xml)
         return False
 
 
@@ -241,7 +310,7 @@ def _mart_exportar_modelo(mart_locator: str, caminho_saida_xml: str,
     primeiro como arquivo local antes da conversao XML.
     """
     try:
-        print(f"[INFO] SCAPI: conectando ao Mart")
+        _log.info("SCAPI: conectando ao Mart")
         scapi    = win32com.client.Dispatch('erwin9.SCAPI.9.0')
         prop_bag = win32com.client.Dispatch('erwin9.SCAPI.PropertyBag.9.0')
         prop_bag.Add("Model_Type", "Combined")
@@ -257,23 +326,23 @@ def _mart_exportar_modelo(mart_locator: str, caminho_saida_xml: str,
         sessao_m1 = scapi.Sessions.Add()
         ret_m0 = sessao_m0.Open(pu, 0)
         ret_m1 = sessao_m1.Open(pu, 1)
-        print(f"[INFO] SCAPI: sessao M0={ret_m0}  M1={ret_m1}")
+        _log.debug("SCAPI: sessao M0=%s  M1=%s", ret_m0, ret_m1)
 
-        print(f"[INFO] SCAPI: salvando local em {caminho_temp}")
+        _log.info("SCAPI: salvando local em %s", caminho_temp)
         # Salvando em arquivo local temporario, usar disposicao de arquivo.
         pu.Save(caminho_temp, "OVF=Yes")
-        print(f"[INFO] SCAPI: Save() concluido")
+        _log.debug("SCAPI: Save() concluido")
         scapi.Sessions.Clear()
 
         tamanho_temp = os.path.getsize(caminho_temp)
-        print(f"[INFO] SCAPI: arquivo temp {tamanho_temp:,} bytes")
+        _log.debug("SCAPI: arquivo temp %s bytes", f"{tamanho_temp:,}")
         if tamanho_temp == 0:
-            print(f"[ERRO] SCAPI: Save() nao gravou dados no arquivo temp")
+            _log.error("SCAPI: Save() nao gravou dados no arquivo temp")
             os.unlink(caminho_temp)
             return False
 
-    except Exception as e:
-        print(f"[EXCECAO] SCAPI Mart: {e}")
+    except Exception:
+        _log.exception("SCAPI Mart: falha ao abrir/salvar modelo")
         if os.path.exists(caminho_temp):
             os.unlink(caminho_temp)
         return False
@@ -283,6 +352,10 @@ def _mart_exportar_modelo(mart_locator: str, caminho_saida_xml: str,
         os.unlink(caminho_temp)
     return resultado
 
+
+# =============================================================================
+# API PUBLICA
+# =============================================================================
 
 def listar_modelos_mart(mart_url: str, bearer_token: str, xsrf_token: str,
                         caminho_saida: str) -> bool:
@@ -314,10 +387,10 @@ def listar_modelos_mart(mart_url: str, bearer_token: str, xsrf_token: str,
         tree = ET.ElementTree(ET.fromstring(conteudo))
         ET.indent(tree, space="  ")
         tree.write(caminho_saida, encoding="utf-8", xml_declaration=True)
-        print(f"[OK] Resposta salva em: {caminho_saida}")
+        _log.info("Resposta salva em: %s", caminho_saida)
         return True
-    except Exception as e:
-        print(f"[EXCECAO] {e}")
+    except Exception:
+        _log.exception("Erro ao salvar lista de modelos")
         return False
 
 
@@ -366,7 +439,7 @@ def filtrar_modelos_mart_por_data(
     for model in root.findall("Model"):
         catalog_path = model.findtext("Catalog_Path", "")
         catalog_name = model.findtext("Catalog_Name", "")
-        updated_on = model.findtext("UpdatedOn", "")
+        updated_on   = model.findtext("UpdatedOn", "")
 
         if not catalog_path or not catalog_name or not updated_on:
             continue
@@ -385,14 +458,13 @@ def filtrar_modelos_mart_por_data(
         if dt_max and data_modelo > dt_max.date():
             continue
 
-        if True:
-            modelos_filtrados.append(
-                {
-                    "Catalog_Name": catalog_name,
-                    "Catalog_Path": catalog_path,
-                    "UpdatedOn": updated_on,
-                }
-            )
+        modelos_filtrados.append(
+            {
+                "Catalog_Name": catalog_name,
+                "Catalog_Path": catalog_path,
+                "UpdatedOn":    updated_on,
+            }
+        )
 
     return modelos_filtrados
 
@@ -419,7 +491,7 @@ def erwin_to_xml(caminho_modelo_erwin: str, caminho_saida_xml: str) -> bool:
         False em caso de falha.
     """
     if not os.path.isfile(caminho_modelo_erwin):
-        print(f"[ERRO] Arquivo de entrada nao encontrado: {caminho_modelo_erwin}")
+        _log.error("Arquivo de entrada nao encontrado: %s", caminho_modelo_erwin)
         return False
     return _exportar_via_com(caminho_modelo_erwin, caminho_saida_xml)
 
@@ -437,9 +509,9 @@ def mart_exportar_todos_xml(
 ) -> dict[str, bool]:
     """
     Lista todos os modelos do Mart Server e exporta cada um para XML indentado.
-    
-    Replica a estrutura de pastas do Mart Server na saída:
-        Exemplo: Mart/Modelos/eMovies → output/xml/Mart/Modelos/eMovies.xml
+
+    Replica a estrutura de pastas do Mart Server na saida:
+        Exemplo: Mart/Modelos/eMovies -> output/xml/Mart/Modelos/eMovies.xml
 
     Utiliza o locator COM no formato:
         mart://Mart/<Catalog_Path_sem_prefixo>/<Catalog_Name>?<mart_conn_str>
@@ -489,13 +561,13 @@ def mart_exportar_todos_xml(
         for model in root.findall("Model"):
             catalog_path = model.findtext("Catalog_Path", "")
             catalog_name = model.findtext("Catalog_Name", "")
-            updated_on = model.findtext("UpdatedOn", "")
+            updated_on   = model.findtext("UpdatedOn", "")
             if catalog_path and catalog_name:
                 modelos_base.append(
                     {
                         "Catalog_Name": catalog_name,
                         "Catalog_Path": catalog_path,
-                        "UpdatedOn": updated_on,
+                        "UpdatedOn":    updated_on,
                     }
                 )
 
@@ -503,80 +575,81 @@ def mart_exportar_todos_xml(
     for model in modelos_base:
         catalog_path = model["Catalog_Path"]
         catalog_name = model["Catalog_Name"]
-        updated_on = model.get("UpdatedOn", "")
+        updated_on   = model.get("UpdatedOn", "")
 
         if any([data_atualizacao_min, data_atualizacao_max, data_atualizacao_exata]) and updated_on:
-            print(f"[INFO] Selecionado por data: {catalog_name} ({updated_on})")
+            _log.info("Selecionado por data: %s (%s)", catalog_name, updated_on)
 
         modelos.append((catalog_path, catalog_name))
 
-    print(f"[INFO] {len(modelos)} modelo(s) a exportar")
+    _log.info("%d modelo(s) a exportar", len(modelos))
     os.makedirs(caminho_saida_dir, exist_ok=True)
     os.makedirs(caminho_temp_dir,  exist_ok=True)
 
     resultados: dict[str, bool] = {}
     for catalog_path, catalog_name in modelos:
         locator = montar_locator_mart(catalog_path, catalog_name, mart_conn_str)
-        print(f"[INFO] Locator montado: {locator}")
-        
+        _log.debug("Locator: %s", locator)
+
         # Replicar estrutura de pastas do Mart no output
-        # Ex: Mart/Modelos/eMovies.xml ou Mart/Ambiente/Homologacao/exemploMongo.xml
         dir_saida_model = os.path.join(caminho_saida_dir, catalog_path)
         os.makedirs(dir_saida_model, exist_ok=True)
-        
+
         caminho_saida = os.path.join(dir_saida_model, f"{catalog_name}.xml")
         caminho_temp  = os.path.join(caminho_temp_dir,  f"{catalog_name}.erwin")
-        
-        print(f"[DEBUG] Catalog_Path: {catalog_path}")
-        print(f"[DEBUG] Catalog_Name: {catalog_name}")
-        print(f"[DEBUG] Dir saida: {dir_saida_model}")
-        print(f"[DEBUG] Caminho XML: {caminho_saida}")
+
+        _log.debug("Catalog_Path=%s  Catalog_Name=%s", catalog_path, catalog_name)
+        _log.debug("Saida: %s", caminho_saida)
         resultados[catalog_name] = _mart_exportar_modelo(locator, caminho_saida, caminho_temp)
 
     return resultados
 
 
 # =============================================================================
-# EXEMPLO DE USO
+# ENTRY POINT
 # =============================================================================
 if __name__ == "__main__":
 
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     _carregar_dotenv(os.path.join(BASE_DIR, ".env"))
 
+    LOG_DIR    = os.path.join(BASE_DIR, "log")
     OUTPUT_DIR = os.path.join(BASE_DIR, "output")
     REPORT_DIR = os.path.join(OUTPUT_DIR, "mart_report")
     XML_DIR    = os.path.join(OUTPUT_DIR, "xml")
     TEMP       = os.path.join(BASE_DIR, "temp")
+
+    _configurar_log(LOG_DIR)
+
     os.makedirs(REPORT_DIR, exist_ok=True)
     os.makedirs(XML_DIR,    exist_ok=True)
     os.makedirs(TEMP,       exist_ok=True)
 
-    MART_URL     = _env_obrigatorio("MART_URL")
-    _protocolo   = os.getenv("MART_PROTOCOL", "https")
-    BEARER_ENV   = os.getenv("MART_BEARER_TOKEN", "").strip()
-    XSRF_ENV     = os.getenv("MART_XSRF_TOKEN", "").strip()
+    MART_URL   = _env_obrigatorio("MART_URL")
+    _protocolo = os.getenv("MART_PROTOCOL", "https")
+    BEARER_ENV = os.getenv("MART_BEARER_TOKEN", "").strip()
+    XSRF_ENV   = os.getenv("MART_XSRF_TOKEN",   "").strip()
+
     if not BEARER_ENV:
-        print("[INFO] MART_BEARER_TOKEN nao informado — gerando token automaticamente")
-        _user = _env_obrigatorio("USER_MART")
-        _pass = _env_obrigatorio("PASS_MART")
+        _log.info("MART_BEARER_TOKEN nao informado — gerando token automaticamente")
+        _user  = _env_obrigatorio("USER_MART")
+        _pass  = _env_obrigatorio("PASS_MART")
         BEARER, XSRF = _gerar_token_mart(_montar_base_url_api(MART_URL, _protocolo), _user, _pass)
     elif not XSRF_ENV:
-        print("[INFO] MART_XSRF_TOKEN nao informado — obtendo XSRF token")
+        _log.info("MART_XSRF_TOKEN nao informado — obtendo XSRF token")
         XSRF   = _obter_xsrf_token(_montar_base_url_api(MART_URL, _protocolo))
         BEARER = BEARER_ENV
     else:
         BEARER = BEARER_ENV
         XSRF   = XSRF_ENV
+
     MART_CONN_BASE = _env_obrigatorio("MART_CONN_STR")
     USER_MART      = os.getenv("USER_MART", "").strip() or None
     PASS_MART      = os.getenv("PASS_MART", "").strip() or None
     MART_CONN      = _montar_conn_str_mart(MART_CONN_BASE, USER_MART, PASS_MART, MART_URL)
-    DATA_EXATA   = os.getenv("MART_UPDATED_ON_EXACT", "").strip() or None
-    DATA_MIN_ENV = os.getenv("MART_UPDATED_ON_MIN", "").strip()
-    DATA_MIN     = DATA_MIN_ENV or None
-    DATA_MAX_ENV = os.getenv("MART_UPDATED_ON_MAX", "").strip()
-    DATA_MAX     = DATA_MAX_ENV or None
+    DATA_EXATA     = os.getenv("MART_UPDATED_ON_EXACT", "").strip() or None
+    DATA_MIN       = os.getenv("MART_UPDATED_ON_MIN",   "").strip() or None
+    DATA_MAX       = os.getenv("MART_UPDATED_ON_MAX",   "").strip() or None
 
     # --- 1. Salvar lista de modelos ---
     listar_modelos_mart(
@@ -587,7 +660,6 @@ if __name__ == "__main__":
     )
 
     # --- 2. Exportar todos os modelos do Mart para XML ---
-    #        Filtra apenas modelos atualizados a partir de 02/10/2026
     resultados = mart_exportar_todos_xml(
         mart_url=MART_URL,
         bearer_token=BEARER,
@@ -600,7 +672,13 @@ if __name__ == "__main__":
         data_atualizacao_exata=DATA_EXATA,
     )
 
-    print("\n[RESUMO]")
+    # Console: apenas resumo final
+    print("\nRESUMO")
+    print("-" * 40)
     for nome, ok in resultados.items():
-        status = "OK" if ok else "FALHA"
+        status = "OK   " if ok else "FALHA"
         print(f"  [{status}] {nome}")
+    total_ok    = sum(1 for ok in resultados.values() if ok)
+    total_falha = len(resultados) - total_ok
+    print(f"\n  {total_ok} exportado(s)  |  {total_falha} com falha")
+    print(f"  Log detalhado: {os.path.join(LOG_DIR, datetime.now().strftime('erwin_%Y-%m-%d.log'))}")

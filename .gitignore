@@ -13,6 +13,7 @@ wheels/
 .env
 
 # Output and generated files (all XMLs, ERWINs and reports)
-output/
+output/xml/Mart/**
+!output/xml/Mart/**/.gitkeep
 input/
 logs/

@@ -8,7 +8,13 @@
       "WebFetch(domain:mart.dacorp.net.br)",
       "Bash(curl -sk https://mart.dacorp.net.br/MartServer/v3/api-docs)",
       "Bash(python3 -c \":*)",
-      "Bash(curl -skI https://mart.dacorp.net.br/MartServer/csrf)"
+      "Bash(curl -skI https://mart.dacorp.net.br/MartServer/csrf)",
+      "Bash(.venv/Scripts/pip install:*)",
+      "Bash(.venv/Scripts/pip.exe install:*)",
+      "Bash(python -m pip install streamlit -q)",
+      "Bash(/c/Users/sidne/Desktop/erwinDM_save_to_xml/.venv/Scripts/python.exe -m pip install streamlit -q)",
+      "Bash(uv add:*)",
+      "Bash(/c/Users/sidne/Desktop/erwinDM_save_to_xml/.venv/Scripts/python.exe -c \"import streamlit; print\\(streamlit.__version__\\)\")"
     ],
     "additionalDirectories": [
       "C:\\temp"
